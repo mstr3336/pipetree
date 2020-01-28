@@ -140,6 +140,18 @@
       "Repository": "CRAN",
       "Hash": "5e655fb54cceead0f095f22d7be33da3"
     },
+    "portrpaths": {
+      "Package": "portrpaths",
+      "Version": "0.3.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "portrpaths",
+      "RemoteUsername": "mstr3336",
+      "RemoteRef": "master",
+      "RemoteSha": "8035b73cb172fc3f82b23d746245ea290b725118",
+      "Hash": "319c659bd2473ee171f01d5b6a5c5da8"
+    },
     "praise": {
       "Package": "praise",
       "Version": "1.0.0",
