@@ -1,0 +1,26 @@
+Package: pipetree
+Title: Wrappers for Navigating the Resource Tree of SPEED-EXTRACT
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = c("Matthew", "Mark"),
+           family = "Strasiotto",
+           role = c("aut", "cre"),
+           email = c(
+             "mstr3336@uni.sydney.edu.au",
+             "matthew.strasiotto@gmail.com",
+             "matthew.strasiotto@sydney.edu.au"
+             ),
+           comment = c(""))
+Description: This package provides wrappers for navigating the resource tree of
+    the SPEED-EXTRACT project. Specifically, input data, the workflow cache, 
+    log outputs, and dataset metadata all have specific locations, as well as 
+    mechanisms to access them. 
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 2.1.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.2
+Imports: 
+    portrpaths (>= 0.3.2)

@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^pipetree\.Rproj$
+^\.Rproj\.user$
