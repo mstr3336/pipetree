@@ -30,6 +30,4 @@ Imports:
     RSQLite,
     storr,
     magrittr
-Remotes: 
-    mstr3336/pathlibr,
-    mstr3336/portrpaths
+Remotes: mstr3336/pathlibr, mstr3336/portrpaths
