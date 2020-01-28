@@ -1,6 +1,6 @@
 Package: pipetree
 Title: Wrappers for Navigating the Resource Tree of SPEED-EXTRACT
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person(given = c("Matthew", "Mark"),
            family = "Strasiotto",
@@ -30,6 +30,4 @@ Imports:
     RSQLite,
     storr,
     magrittr
-Remotes: 
-    mstr3336/pathlibr,
-    mstr3336/portrpaths
+Remotes: mstr3336/pathlibr, mstr3336/portrpaths
