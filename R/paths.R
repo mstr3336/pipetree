@@ -20,8 +20,7 @@ default_config_path <- function() {
 }
 
 #' @export
-#' @keywords internal
-load_portrpaths <- function(){
+get_portrpath <- function(config_path = default_config_path()){
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
