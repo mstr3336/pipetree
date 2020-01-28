@@ -8,12 +8,12 @@ default_config_path()
 }
 \description{
 This function returns a default for the local config file.
-This is given by the following:\if{html}{\out{<div class="r">}}\preformatted{file.path(here::here(), "maps", "paths", "local.yaml")
+This is given by the following:\if{html}{\out{<div class="r">}}\preformatted{file.path(here::here(), "local.yaml")
 }\if{html}{\out{</div>}}
 
 That is:
 
 \emph{Assuming} \strong{.} \emph{refers to the root of the current Rproject:}
 
-"./maps/paths/local.yaml"
+"./local.yaml"
 }

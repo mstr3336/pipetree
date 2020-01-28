@@ -5,18 +5,18 @@
 #' This is given by the following:
 #'
 #' ```r
-#' file.path(here::here(), "maps", "paths", "local.yaml")
+#' file.path(here::here(), "local.yaml")
 #' ```
 #'
 #' That is:
 #'
 #' *Assuming* __.__ *refers to the root of the current Rproject:*
 #'
-#' "./maps/paths/local.yaml"
+#' "./local.yaml"
 #'
 #' @export
 default_config_path <- function() {
-  out <- file.path(here::here(), "maps", "paths", "local.yaml")
+  out <- file.path(here::here(), "local.yaml")
   msg <- glue::glue("No path given, using default: {out}")
   L$warn(msg)
   warn(msg)
