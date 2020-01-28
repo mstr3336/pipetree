@@ -46,7 +46,7 @@ get_portrpath <- function(config_path = NULL ) {
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
-  paths <- portrpaths::PortrPath$new(glue("{here::here()}/maps/paths/local.yaml"))
+  paths <- portrpaths::PortrPath$new(config_path)
   return(paths)
 }
 
