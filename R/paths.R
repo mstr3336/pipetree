@@ -92,7 +92,7 @@ get_paths <- function(
 #'  [drake's documentation](https://ropenscilabs.github.io/drake-manual/storage.html#database-caches)
 #'
 #' @param root the project root (Top level directory containing "pipeline" directory), defaults to
-#'        whatever root is currently set by [load_portrpaths()]
+#'        whatever root is currently set by [get_portrpath()]
 #' @family paths
 #' @export
 get_cache <- function(root = NULL){
