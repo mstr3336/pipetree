@@ -38,7 +38,7 @@ get_paths <- function(config_path = default_config_path()){
 
   # Setup paths ======================================================
 
-  paths <- load_portrpaths()
+  paths <- get_portrpath(config_path = config_path)
 
   root <- paths$root %>% pathlibr::Path$new()
 
