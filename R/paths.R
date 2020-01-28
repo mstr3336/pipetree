@@ -1,3 +1,24 @@
+#' Default Path to Search for Local Configuration
+#'
+#' @description
+#' This function returns a default for the local config file.
+#' This is given by the following:
+#'
+#' ```r
+#' file.path(here::here(), "maps", "paths", "local.yaml")
+#' ```
+#'
+#' That is:
+#'
+#' *Assuming* __.__ *refers to the root of the current Rproject:*
+#'
+#' "./maps/paths/local.yaml"
+#'
+#' @export
+default_config_path <- function() {
+  return(file.path(here::here(), "maps", "paths", "local.yaml"))
+}
+
 #' @export
 #' @keywords internal
 load_portrpaths <- function(){
