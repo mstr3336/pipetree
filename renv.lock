@@ -142,15 +142,15 @@
     },
     "portrpaths": {
       "Package": "portrpaths",
-      "Version": "0.3.2",
+      "Version": "1.0.0",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "portrpaths",
       "RemoteUsername": "mstr3336",
+      "RemoteRepo": "portrpaths",
       "RemoteRef": "master",
-      "RemoteSha": "8035b73cb172fc3f82b23d746245ea290b725118",
-      "Hash": "319c659bd2473ee171f01d5b6a5c5da8"
+      "RemoteSha": "1fedd2fd9d0e0a9aafab69c34ea110ef1ae0a891",
+      "RemoteHost": "api.github.com",
+      "Hash": "0a0b131d9f1578eb7ae863c5de01e943"
     },
     "praise": {
       "Package": "praise",
