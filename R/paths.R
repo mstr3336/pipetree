@@ -23,6 +23,14 @@ default_config_path <- function() {
   return(out)
 }
 
+resolve_config_path <- function() {
+  msg <- glue::glue("No config path supplied, using getOption('pipetree.config')")
+  warn(msg)
+  L$warn(msg)
+  config_path <- getOption("pipetree.config") %||% default_config_path()
+  return(config_path)
+}
+
 #' Get the path Configuration object
 #'
 #' Get the `PortrPath` object for configuring paths, profiles etc.
@@ -32,9 +40,9 @@ default_config_path <- function() {
 #' for more info.
 #'
 #' @export
-get_portrpath <- function(
-  config_path = getOption("pipetree.config", default_config_path())
-  ){
+get_portrpath <- function(config_path = NULL ) {
+  if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
+
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
@@ -45,9 +53,9 @@ get_portrpath <- function(
 #' Get a list of the main paths to be used
 #' @family paths
 #' @export
-get_paths <- function(
-  config_path = getOption("pipetree.config", default_config_path())
-){
+get_paths <- function(config_path = NULL) {
+  if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
+
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
