@@ -16,7 +16,11 @@
 #'
 #' @export
 default_config_path <- function() {
-  return(file.path(here::here(), "maps", "paths", "local.yaml"))
+  out <- file.path(here::here(), "maps", "paths", "local.yaml")
+  msg <- glue::glue("No path given, using default: {out}")
+  L$warn(msg)
+  warn(msg)
+  return(out)
 }
 
 #' Get the path Configuration object
