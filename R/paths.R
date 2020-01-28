@@ -31,7 +31,7 @@ get_portrpath <- function(config_path = default_config_path()){
 #' Get a list of the main paths to be used
 #' @family paths
 #' @export
-get_paths <- function(){
+get_paths <- function(config_path = default_config_path()){
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
