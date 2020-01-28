@@ -1,13 +1,20 @@
 Package: pipetree
-Title: What the Package Does (One Line, Title Case)
+Title: Wrappers for Navigating the Resource Tree of SPEED-EXTRACT
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = c("Matthew", "Mark"),
+           family = "Strasiotto",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = c(
+             "mstr3336@uni.sydney.edu.au",
+             "matthew.strasiotto@gmail.com",
+             "matthew.strasiotto@sydney.edu.au"
+             ),
+           comment = c(""))
+Description: This package provides wrappers for navigating the resource tree of
+    the SPEED-EXTRACT project. Specifically, input data, the workflow cache, 
+    log outputs, and dataset metadata all have specific locations, as well as 
+    mechanisms to access them. 
+License: MIT
 Encoding: UTF-8
 LazyData: true
