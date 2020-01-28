@@ -20,7 +20,9 @@ default_config_path <- function() {
 }
 
 #' @export
-get_portrpath <- function(config_path = default_config_path()){
+get_portrpath <- function(
+  config_path = getOption("pipetree.config", default_config_path())
+  ){
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
@@ -31,7 +33,9 @@ get_portrpath <- function(config_path = default_config_path()){
 #' Get a list of the main paths to be used
 #' @family paths
 #' @export
-get_paths <- function(config_path = default_config_path()){
+get_paths <- function(
+  config_path = getOption("pipetree.config", default_config_path())
+){
   glue <- glue::glue
   `%//%` <- pathlibr::`%//%`
   here <- here::here
