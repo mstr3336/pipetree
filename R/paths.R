@@ -19,6 +19,14 @@ default_config_path <- function() {
   return(file.path(here::here(), "maps", "paths", "local.yaml"))
 }
 
+#' Get the path Configuration object
+#'
+#' Get the `PortrPath` object for configuring paths, profiles etc.
+#'
+#' See
+#' [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
+#' for more info.
+#'
 #' @export
 get_portrpath <- function(
   config_path = getOption("pipetree.config", default_config_path())
