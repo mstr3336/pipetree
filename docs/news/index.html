@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load the Drake Cache for the Project — get_cache • pipetree</title>
+<title>Changelog • pipetree</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,7 @@
 
 
 
-<meta property="og:title" content="Load the Drake Cache for the Project — get_cache" />
-<meta property="og:description" content="Given the root directory of the project, return the cache to be used by
-drake." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -57,7 +54,7 @@ drake." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,50 +101,33 @@ drake." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load the Drake Cache for the Project</h1>
-    
-    <div class="hidden name"><code>get_cache.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>Given the root directory of the project, return the cache to be used by
-drake.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>get_cache</span>(<span class='kw'>root</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>root</th>
-      <td><p>the project root (Top level directory containing "pipeline" directory), defaults to
-whatever root is currently set by <code><a href='get_portrpath.html'>get_portrpath()</a></code></p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The cache will be of the SQLite implementation, to improve performance on
-the lustre file system of the HPC.</p>
-<p>This isn't intinsically threadsafe, so in <code>drake::config()</code>, be sure to
-set <code>caching = "master"</code>, as per
-<a href='https://ropenscilabs.github.io/drake-manual/storage.html#database-caches'>drake's documentation</a></p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other paths: 
-<code><a href='get_paths.html'>get_paths</a>()</code></p></div>
-
+    <div id="pipetree-0-1-0" class="section level1">
+<h1 class="page-header">
+<a href="#pipetree-0-1-0" class="anchor"></a>pipetree 0.1.0</h1>
+<div id="features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#features" class="anchor"></a>Features</h2>
+<ul>
+<li>Should be able to resolve paths using wrapper functions <code><a href="../reference/get_cache.html">get_cache()</a></code>, <code>get_paths</code>, <code>load_portrpaths</code>
+</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pipetree-0-1-0">0.1.0</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
 
