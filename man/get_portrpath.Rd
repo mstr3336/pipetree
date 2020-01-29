@@ -6,11 +6,26 @@
 \usage{
 get_portrpath(config_path = NULL)
 }
+\arguments{
+\item{config_path}{the path to the configuration \code{yaml} file. If not
+specified, this will be given by \code{getOption("pipetree.config")},
+and if this is unset, will be given by \code{\link[=default_config_path]{default_config_path()}}.
+(See \strong{Default Config Path} section)}
+}
 \description{
 Get the \code{PortrPath} object for configuring paths, profiles etc.
-}
-\details{
-See
-\href{https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html}{portrpaths::PortrPath}
+See \href{https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html}{portrpaths::PortrPath}
 for more info.
 }
+\section{Default Config Path}{
+
+This is given by the following:\if{html}{\out{<div class="r">}}\preformatted{file.path(here::here(), "local.yaml")
+}\if{html}{\out{</div>}}
+
+That is:
+
+\emph{Assuming} \strong{.} \emph{refers to the root of the current Rproject:}
+
+"./local.yaml"
+}
+
