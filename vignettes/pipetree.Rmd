@@ -66,8 +66,6 @@ By setting the global option `pipetree.config = /path/to/your/config.yaml`,
 possibly in your user level *.Rprofile* (*~/.Rprofile*), or your project-level
 *Rprofile* (`here::here()` */.Rprofile* ), a consistent location for this 
 configuration file may be specified. 
-
-
 ```{r, include = FALSE}
 temp_root <- tempdir()
 option_config <- file.path(temp_root, "option_config.yaml")
@@ -87,19 +85,16 @@ cat(option_config, sep = "\n")
 ```
 
 The contents:
-
 ```{r}
 for (ln in readLines(option_config)) cat(ln, sep = "\n")
 ```
 
 ### Setting the option
-
 ```{r}
 options(pipetree.config = option_config)
 ```
 
 Now let's load this configuration:
-
 ```{r}
 portrpath <- pipetree::get_portrpath()
 portrpath
