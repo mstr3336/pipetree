@@ -26,6 +26,8 @@ default_config_path <- function() {
 }
 
 resolve_config_path <- function() {
+  `%||%` <- rlang::`%||%`
+
   msg <- glue::glue("No config path supplied, using getOption('pipetree.config')")
   warning(msg)
   L$warn(msg)
