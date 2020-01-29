@@ -78,7 +78,7 @@ get_paths <- function(config_path = NULL) {
 
   if (!dir.exists(root$show)) stop("Root not setup!")
 
-  pipeline <- root$.$pipeline
+  pipeline <- root$join("pipeline")
 
   raw <- pipeline$join("raw")
 
