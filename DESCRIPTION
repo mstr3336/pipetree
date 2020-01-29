@@ -21,7 +21,9 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
     testthat (>= 2.1.0),
-    pkgdown
+    pkgdown,
+    knitr,
+    rmarkdown
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2
 Imports: 
@@ -32,3 +34,4 @@ Imports:
     storr,
     magrittr
 Remotes: mstr3336/pathlibr, mstr3336/portrpaths
+VignetteBuilder: knitr
