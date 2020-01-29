@@ -42,18 +42,18 @@ The most important functionalities provided are as follows:
    1. projects have useful aliases for structured and versioned logging of 
       target statistics. 
       
-      Use cases for this include:
-      1. Allowing versioned tracking of multiple datasets'  
-         [drake::drake_cache_log], within a versioned project/repo within 
-         separate subdirectories of the project that builds these targets.
-      1. Allowing more in-depth data versioning, such as versioned `yaml`
-         files describing high level aggregates of a given dataframe across 
-         the workflow, eg
+    Use cases for this include:
+    1. Allowing versioned tracking of multiple datasets'  
+       [drake::drake_cache_log], within a versioned project/repo within 
+       separate subdirectories of the project that builds these targets.
+    1. Allowing more in-depth data versioning, such as versioned `yaml`
+       files describing high level aggregates of a given dataframe across 
+       the workflow, eg
          
-         ```yaml
-         n_journeys: 100
-         n_journeys_stemi: 5
-         ```
+       ```yaml
+       n_journeys: 100
+       n_journeys_stemi: 5
+       ```
          
 
 # Portable Access to Datasets
