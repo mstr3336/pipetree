@@ -2,6 +2,8 @@
 #'
 #' @description
 #' This function returns a default for the local config file.
+#'
+#' @section Default Config Path:
 #' This is given by the following:
 #'
 #' ```r
@@ -35,10 +37,13 @@ resolve_config_path <- function() {
 #'
 #' Get the `PortrPath` object for configuring paths, profiles etc.
 #'
-#' See
+#' @inheritSection default_config_path Default Config Path
 #' [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
 #' for more info.
-#'
+#' @param config_path the path to the configuration `yaml` file. If not
+#'        specified, this will be given by `getOption("pipetree.config")`,
+#'        and if this is unset, will be given by [default_config_path()].
+#'        (See **Default Config Path** section)
 #' @export
 get_portrpath <- function(config_path = NULL ) {
   if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
