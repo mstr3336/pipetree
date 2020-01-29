@@ -133,3 +133,42 @@ portrpath <- pipetree::get_portrpath(config_path = option_config)
 portrpath
 ```
 
+Let's return to the convenience of using the `options(pipetree.config)`,
+for now.
+```{r}
+options(pipetree.config = option_config)
+portrpath <- pipetree::get_portrpath()
+```
+
+## Using the config
+
+For demonstration purposes, let's set our project directory to
+a temporary directory.
+```{r}
+portrpath$add_profile("temp", temp_root)
+portrpath$profile <- "temp"
+portrpath
+```
+
+# Access to the filetree
+
+To access the filetree, we use get_paths(), similarly to how we loaded our 
+config.
+```{r}
+paths <- pipetree::get_paths()
+paths
+```
+
+# Accessing the cache
+
+For this demonstration, there is no real cache in place, but we can pretend.
+
+```{r}
+cache <- pipetree::get_cache()
+```
+
+To use this cache to extract a target, for example, we have a target
+in our drake::drake_plan() called `mtcars`, we do the following:
+```{r, eval=FALSE}
+mtc <- drake::readd(mtcars, cache = cache)
+```
