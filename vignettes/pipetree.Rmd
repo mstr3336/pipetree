@@ -75,7 +75,7 @@ configuration file may be specified.
 ```{r, include = FALSE}
 temp_root <- tempdir()
 option_config <- file.path(temp_root, "option_config.yaml")
-default_config <- default_config_path()
+default_config <- pipetree::default_config_path()
 
 file.copy("./option_config.yaml", option_config)
 file.copy("./default_config.yaml", default_config)
@@ -106,4 +106,6 @@ Now let's load this configuration:
 
 ```{r}
 portrpath <- pipetree::get_portrpath()
+portrpath
 ```
+
