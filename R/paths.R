@@ -3,7 +3,7 @@
 #' @description
 #' This function returns a default for the local config file.
 #'
-#' @section Default Config Path:
+#' @section Path:
 #' This is given by the following:
 #'
 #' ```r
@@ -39,7 +39,7 @@ resolve_config_path <- function() {
 #'
 #' Get the `PortrPath` object for configuring paths, profiles etc.
 #'
-#' @inheritSection default_config_path Default Config Path
+#' @inheritSection default_config_path Path
 #' [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
 #' for more info.
 #' @param config_path the path to the configuration `yaml` file. If not
@@ -60,7 +60,7 @@ get_portrpath <- function(config_path = NULL ) {
 #' Get a list of the main paths to be used
 #'
 #' @family paths
-#' @inheritSection default_config_path Default Config Path
+#' @inheritSection default_config_path Path
 #' @inheritParams get_portrpath
 #' @export
 get_paths <- function(config_path = NULL) {
