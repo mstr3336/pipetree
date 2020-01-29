@@ -22,7 +22,7 @@ default_config_path <- function() {
   out <- file.path(here::here(), "local.yaml")
   msg <- glue::glue("No path given, using default: {out}")
   L$warn(msg)
-  warning(msg)
+  #warning(msg)
   return(out)
 }
 
@@ -30,7 +30,7 @@ resolve_config_path <- function() {
   `%||%` <- rlang::`%||%`
 
   msg <- glue::glue("No config path supplied, using getOption('pipetree.config')")
-  warning(msg)
+  #warning(msg)
   L$warn(msg)
   config_path <- getOption("pipetree.config") %||% default_config_path()
   return(config_path)
