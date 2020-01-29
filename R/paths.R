@@ -56,7 +56,10 @@ get_portrpath <- function(config_path = NULL ) {
 }
 
 #' Get a list of the main paths to be used
+#'
 #' @family paths
+#' @inheritSection default_config_path Default Config Path
+#' @inheritParams get_portrpath
 #' @export
 get_paths <- function(config_path = NULL) {
   if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
