@@ -15,6 +15,7 @@ Description: This package provides wrappers for navigating the resource tree of
     the SPEED-EXTRACT project. Specifically, input data, the workflow cache, 
     log outputs, and dataset metadata all have specific locations, as well as 
     mechanisms to access them. 
+URL: https://mstr3336.github.io/pipetree/
 License: MIT
 Encoding: UTF-8
 LazyData: true
