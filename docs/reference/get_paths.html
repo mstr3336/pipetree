@@ -117,7 +117,27 @@
 
     <pre class="usage"><span class='fu'>get_paths</span>(<span class='kw'>config_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>config_path</th>
+      <td><p>the path to the configuration <code>yaml</code> file. If not
+specified, this will be given by <code><a href='https://rdrr.io/r/base/options.html'>getOption("pipetree.config")</a></code>,
+and if this is unset, will be given by <code><a href='default_config_path.html'>default_config_path()</a></code>.
+(See <strong>Default Config Path</strong> section)</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="default-config-path"><a class="anchor" href="#default-config-path"></a>Default Config Path</h2>
+
+    
+
+<p>This is given by the following:<div class="r"></p><pre>file.path(here::here(), "local.yaml")
+</pre><p></div></p>
+<p>That is:</p>
+<p><em>Assuming</em> <strong>.</strong> <em>refers to the root of the current Rproject:</em></p>
+<p>"./local.yaml"</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other paths: 
@@ -127,6 +147,8 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#default-config-path">Default Config Path</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 
