@@ -15,12 +15,15 @@ Description: This package provides wrappers for navigating the resource tree of
     the SPEED-EXTRACT project. Specifically, input data, the workflow cache, 
     log outputs, and dataset metadata all have specific locations, as well as 
     mechanisms to access them. 
+URL: https://mstr3336.github.io/pipetree/
 License: MIT
 Encoding: UTF-8
 LazyData: true
 Suggests: 
     testthat (>= 2.1.0),
-    pkgdown
+    pkgdown,
+    knitr,
+    rmarkdown
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2
 Imports: 
@@ -31,3 +34,4 @@ Imports:
     storr,
     magrittr
 Remotes: mstr3336/pathlibr, mstr3336/portrpaths
+VignetteBuilder: knitr

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//index.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/default_config_path.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/get_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/get_paths.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/get_portrpath.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//articles/pipetree.html</loc>
+  </url>
+</urlset>

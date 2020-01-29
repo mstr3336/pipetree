@@ -8,6 +8,12 @@ default_config_path()
 }
 \description{
 This function returns a default for the local config file.
+}
+\details{
+Get the default config path
+}
+\section{Default Config Path}{
+
 This is given by the following:\if{html}{\out{<div class="r">}}\preformatted{file.path(here::here(), "local.yaml")
 }\if{html}{\out{</div>}}
 
@@ -17,3 +23,4 @@ That is:
 
 "./local.yaml"
 }
+

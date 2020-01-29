@@ -1,0 +1,8 @@
+d_root: /default/path/to/dataset
+info: |
+ This config is specified in ./vignettes/default_config.yaml, and copied to
+ ./local.yaml whenever the Getting Started vignette is run.
+ It is intended only as a demonstration
+profiles:
+ default: /default/path/to/dataset
+ alt: /alternate/path/to/dataset

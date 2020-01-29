@@ -1,7 +1,10 @@
 #' Default Path to Search for Local Configuration
 #'
+#' Get the default config path
 #' @description
 #' This function returns a default for the local config file.
+#'
+#' @section Default Config Path:
 #' This is given by the following:
 #'
 #' ```r
@@ -19,13 +22,15 @@ default_config_path <- function() {
   out <- file.path(here::here(), "local.yaml")
   msg <- glue::glue("No path given, using default: {out}")
   L$warn(msg)
-  warn(msg)
+  #warning(msg)
   return(out)
 }
 
 resolve_config_path <- function() {
+  `%||%` <- rlang::`%||%`
+
   msg <- glue::glue("No config path supplied, using getOption('pipetree.config')")
-  warn(msg)
+  #warning(msg)
   L$warn(msg)
   config_path <- getOption("pipetree.config") %||% default_config_path()
   return(config_path)
@@ -34,11 +39,15 @@ resolve_config_path <- function() {
 #' Get the path Configuration object
 #'
 #' Get the `PortrPath` object for configuring paths, profiles etc.
-#'
-#' See
-#' [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
+#' See [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
 #' for more info.
 #'
+#' @inheritSection default_config_path Default Config Path
+#'
+#' @param config_path the path to the configuration `yaml` file. If not
+#'        specified, this will be given by `getOption("pipetree.config")`,
+#'        and if this is unset, will be given by [default_config_path()].
+#'        (See **Default Config Path** section)
 #' @export
 get_portrpath <- function(config_path = NULL ) {
   if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
@@ -51,7 +60,10 @@ get_portrpath <- function(config_path = NULL ) {
 }
 
 #' Get a list of the main paths to be used
+#'
 #' @family paths
+#' @inheritSection default_config_path Default Config Path
+#' @inheritParams get_portrpath
 #' @export
 get_paths <- function(config_path = NULL) {
   if (rlang::is_empty(config_path)) config_path <- resolve_config_path()
@@ -68,7 +80,7 @@ get_paths <- function(config_path = NULL) {
 
   if (!dir.exists(root$show)) stop("Root not setup!")
 
-  pipeline <- root$.$pipeline
+  pipeline <- root$join("pipeline")
 
   raw <- pipeline$join("raw")
 
