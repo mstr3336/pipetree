@@ -1,9 +1,10 @@
 #' Default Path to Search for Local Configuration
 #'
+#' Get the default config path
 #' @description
 #' This function returns a default for the local config file.
 #'
-#' @section Path:
+#' @section Default Config Path:
 #' This is given by the following:
 #'
 #' ```r
@@ -38,10 +39,11 @@ resolve_config_path <- function() {
 #' Get the path Configuration object
 #'
 #' Get the `PortrPath` object for configuring paths, profiles etc.
-#'
-#' @inheritSection default_config_path Path
-#' [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
+#' See [portrpaths::PortrPath](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
 #' for more info.
+#'
+#' @inheritSection default_config_path Default Config Path
+#'
 #' @param config_path the path to the configuration `yaml` file. If not
 #'        specified, this will be given by `getOption("pipetree.config")`,
 #'        and if this is unset, will be given by [default_config_path()].
@@ -60,7 +62,7 @@ get_portrpath <- function(config_path = NULL ) {
 #' Get a list of the main paths to be used
 #'
 #' @family paths
-#' @inheritSection default_config_path Path
+#' @inheritSection default_config_path Default Config Path
 #' @inheritParams get_portrpath
 #' @export
 get_paths <- function(config_path = NULL) {
