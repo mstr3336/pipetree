@@ -59,11 +59,8 @@ metadata_handle_missing <- function(path) {
 #'
 #' The template is as follows
 #'
-#' @section Example Metadata:
+#' @eval describe_list_function(metadata_template, section_name = "Example Metadata")
 #'
-#' ```yaml
-#' @eval describe_list_function(metadata_template)
-#' ```
 #'
 #' @family metadata
 #' @export
