@@ -9,7 +9,7 @@ get_project_metadata <- function(root = NULL) {
   path <- root$join("metadata.yaml")
 
 
-  if (!file.exists(path$show) ) metadata <- metadata_handle_missing(path)
+  if (!file.exists(path$show) ) metadata <- metadata_handle_missing(path$show)
   else metadata <- yaml::read_yaml(path$show)
 
   L$info("Using metadata file: ")
@@ -33,7 +33,7 @@ metadata_handle_missing <- function(path) {
       .sep = "\n"
       ))
 
-    input = readLine(g("Your value for {nm}: "))
+    input = get_input(g("Your value for {nm}: "))
     if (length(input)) out[[nm]] <- input
   }
 
