@@ -4,11 +4,14 @@
 \alias{get_project_metadata}
 \title{Get Metadata for a Particular Project}
 \usage{
-get_project_metadata(root = NULL)
+get_project_metadata(root = NULL, interactive = TRUE)
 }
 \arguments{
 \item{root}{the project root (Top level directory containing "pipeline" directory), defaults to
 whatever root is currently set by \code{\link[=get_portrpath]{get_portrpath()}}}
+
+\item{interactive}{use this for noninteractive scripts to handle missing
+metadata without user input}
 }
 \description{
 For a project whose data is rooted at \code{root}, get the associated metadata.
