@@ -17,7 +17,12 @@ If none exists, query for it interactively.
 An example metadata file is as follows:
 }
 \section{Metadata Example}{
-NA
+\if{html}{\out{<div class="yaml">}}\preformatted{title: title_of_particular_workflow
+desc: "A short description of the particular workflow.\\nThis is a good place to describe
+  problems with the raw data, its \\nextract period, and so on."
+log_path: relative/path/from/Rproject/root/title_of_particular_workflow
+
+}\if{html}{\out{</div>}}
 }
 
 \seealso{

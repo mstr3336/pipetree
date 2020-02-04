@@ -4,7 +4,7 @@
 \alias{describe_list_function}
 \title{Describe a function that produces a list}
 \usage{
-describe_list_function(fn)
+describe_list_function(fn, section_name = "List Function")
 }
 \description{
 Describe a function that produces a list
