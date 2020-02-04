@@ -143,3 +143,21 @@ get_cache <- function(root = NULL){
 
   db_cache
 }
+
+
+example_local_config <- function() {
+  g <- glue::glue
+
+  out <- list(
+    d_root = "/default/path/to/dataset",
+    info = g(
+      "This config is specified in ./vignettes/default_config.yaml, and copied to",
+      "./local.yaml whenever the Getting Started vignette is run.",
+      "It is intended only as a demonstration", .sep = "\n") %>% as.character(),
+    profiles = list(
+      default = "/default/path/to/dataset",
+      alt = "/alternate/path/to/dataset"
+    )
+  )
+  out
+}
