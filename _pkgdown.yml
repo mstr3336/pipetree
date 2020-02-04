@@ -9,4 +9,9 @@ reference:
   desc: Functions for getting and setting dataset metadata
   contents:
   - has_concept("metadata")
-
+- title: Uncategorized Functions
+  desc: ~
+  contents:
+  - matches(".*")
+  - -has_concept("paths")
+  - -has_concept("metadata")
