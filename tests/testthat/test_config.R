@@ -21,6 +21,7 @@ test_that("Are able to specify pipetree config by option", {
   expect_equal(path_list$root$show, td$join("conf1")$join("r1")$show)
 
   options(pipetree.config = prev_option)
+  unlink(td$show)
 })
 
 test_that("Are able to get default config", {
