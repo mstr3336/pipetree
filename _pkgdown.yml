@@ -9,3 +9,4 @@ reference:
   desc: Functions for getting and setting dataset metadata
   contents:
   - has_concept("metadata")
+
