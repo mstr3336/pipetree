@@ -1,4 +1,6 @@
-
+#' Get Metadata for a Particular Project
+#'
+#'
 get_project_metadata <- function(root = NULL) {
   if (rlang::is_empty(root)) root <- get_paths() %>% .$root
   g <- glue::glue
@@ -16,7 +18,7 @@ get_project_metadata <- function(root = NULL) {
   return(metadata)
 }
 
-metadata_handle_missing(path) {
+metadata_handle_missing <- function(path) {
   path %<>% pathlibr::Path$new()
 
   g <- glue::glue
