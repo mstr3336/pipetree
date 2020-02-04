@@ -72,7 +72,7 @@ metadata_template <- function() {
       "This is a good place to describe problems with the raw data, its ",
       "extract period, and so on.",
       .sep = "\n"
-    ),
+    ) %>% as.character(),
     log_path = "relative/path/from/Rproject/root/title_of_particular_workflow"
   )
 
