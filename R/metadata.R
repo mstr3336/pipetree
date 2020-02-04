@@ -1,6 +1,19 @@
 #' Get Metadata for a Particular Project
 #'
+#' @description
 #'
+#' For a project whose data is rooted at `root`, get the associated metadata.
+#' If none exists, query for it interactively.
+#'
+#' An example metadata file is as follows:
+#'
+#' ```yaml
+#' @eval yaml::as.yaml(metadata_template())
+#' ```
+#'
+#' @inheritParams get_cache
+#' @family metadata
+#' @export
 get_project_metadata <- function(root = NULL) {
   if (rlang::is_empty(root)) root <- get_paths() %>% .$root
   g <- glue::glue
