@@ -1,2 +1,17 @@
 destination: docs
 url: https://mstr3336.github.io/pipetree/
+reference:
+- title: Paths
+  desc: Functions for configuring the paths at which data may be found
+  contents:
+  - has_concept("paths")
+- title: Metadata
+  desc: Functions for getting and setting dataset metadata
+  contents:
+  - has_concept("metadata")
+- title: Uncategorized Functions
+  desc: ~
+  contents:
+  - matches(".*")
+  - -has_concept("paths")
+  - -has_concept("metadata")

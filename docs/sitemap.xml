@@ -7,6 +7,9 @@
     <loc>https://mstr3336.github.io/pipetree//reference/default_config_path.html</loc>
   </url>
   <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/describe_list_function.html</loc>
+  </url>
+  <url>
     <loc>https://mstr3336.github.io/pipetree//reference/get_cache.html</loc>
   </url>
   <url>
@@ -14,6 +17,12 @@
   </url>
   <url>
     <loc>https://mstr3336.github.io/pipetree//reference/get_portrpath.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/get_project_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/metadata_template.html</loc>
   </url>
   <url>
     <loc>https://mstr3336.github.io/pipetree//reference/pipe.html</loc>

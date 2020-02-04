@@ -1,3 +1,8 @@
+# pipetree 0.2.0
+
+- Add function for getting metadata for a dataset
+  `get_project_metadata`. 
+
 # pipetree 0.1.1
 
 - Import and export pipe operator
