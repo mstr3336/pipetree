@@ -5,17 +5,18 @@ get_input <- function(prompt = "") {
 #' Describe a function that produces a list
 #' @keywords internal
 #' @export
-describe_list_function <- function(fn, section_name = "List Section") {
+describe_list_function <- function(fn) {
   input <- fn()
   g <- glue::glue
 
   out <- input %>% yaml::as.yaml()
 
   out <- g(
-    "@section {section_name}",
+    "",
     "```yaml",
     "{out}",
     "```",
+    "",
     .sep = "\n"
   )
 
