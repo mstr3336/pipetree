@@ -7,7 +7,7 @@
 #'
 #' An example metadata file is as follows:
 #'
-#' @inheritSection metadata_template Metadata Example
+#' @eval describe_list_function(metadata_template, section_name = "Metadata Example")
 #'
 #' @inheritParams get_cache
 #' @family metadata
@@ -58,8 +58,8 @@ metadata_handle_missing <- function(path) {
 #' @description
 #'
 #' The template is as follows
-#' @section Metadata Example
-#' @eval describe_list_function(metadata_template)
+#'
+#' @inheritSection get_project_metadata Metadata Example
 #'
 #' @family metadata
 #' @export
