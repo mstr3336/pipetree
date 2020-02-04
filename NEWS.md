@@ -1,3 +1,7 @@
+# pipetree 0.2.1
+
+- Added non-interactive mode for `get_project_metadata`, so it doesnt bust sessions
+
 # pipetree 0.2.0
 
 - Add function for getting metadata for a dataset
