@@ -55,6 +55,15 @@ metadata_handle_missing <- function(path) {
   return(out)
 }
 
+#' An example Metadata file for a dataset
+#'
+#' @description
+#'
+#' The template is as follows
+#' @eval yaml::as.yaml(metadata_template())
+#'
+#' @family metadata
+#' @export
 metadata_template <- function() {
   g <- glue::glue
   out <- list(
