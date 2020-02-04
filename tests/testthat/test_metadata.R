@@ -50,3 +50,9 @@ test_that("Are able to load existing metadata", {
 
   unlink(td$show)
 })
+
+test_that("Non Existant Metadata can be handled without user input", {
+  root = "./fake_root"
+
+  expect_null(get_project_metadata(root, interactive = FALSE))
+})

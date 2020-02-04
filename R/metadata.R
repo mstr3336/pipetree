@@ -10,9 +10,11 @@
 #' @eval describe_list_function(metadata_template, section_name = "Metadata Example")
 #'
 #' @inheritParams get_cache
+#' @param interactive use this for noninteractive scripts to handle missing
+#'        metadata without user input
 #' @family metadata
 #' @export
-get_project_metadata <- function(root = NULL) {
+get_project_metadata <- function(root = NULL, interactive = TRUE) {
   if (rlang::is_empty(root)) root <- get_paths() %>% .$root
   g <- glue::glue
 
@@ -20,7 +22,7 @@ get_project_metadata <- function(root = NULL) {
   path <- root$join("metadata.yaml")
 
 
-  if (!file.exists(path$show) ) metadata <- metadata_handle_missing(path$show)
+  if (!file.exists(path$show) ) metadata <- metadata_handle_missing(path$show, interactive = interactive)
   else metadata <- yaml::read_yaml(path$show)
 
   L$info("Using metadata file: ")
@@ -29,10 +31,20 @@ get_project_metadata <- function(root = NULL) {
   return(metadata)
 }
 
-metadata_handle_missing <- function(path) {
+metadata_handle_missing <- function(path, interactive = TRUE) {
   path %<>% pathlibr::Path$new()
-
   g <- glue::glue
+
+  if (! interactive ) {
+    L$warn(
+      "%s",
+      g(
+        "No metadata file found at {path$show}",
+        "and interactive = FALSE",
+        "returning NULL metadata", .sep = "\n"))
+    return(NULL)
+  }
+
   out <- metadata_template()
 
   for (nm in names(out)) {
