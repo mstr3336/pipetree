@@ -39,6 +39,12 @@ load_merged_partitions <- function(
   cached_list <- drake::cached(cache = cache)
 
   load_and_combine <- function(already_combined, df_name) {
+    `%||%` <- rlang::`%||%`
+    L$debug("Appending '%s' to merged df, nrow before: %s",
+            df_name,
+            nrow(already_combined) %||% 0
+            )
+
     out <- drake::readd(df_name, character_only = TRUE, cache = cache)
     out <- dplyr::bind_rows(already_combined, out)
     return(out)
@@ -46,6 +52,8 @@ load_merged_partitions <- function(
 
 
   fetch_and_combine <- function(target_set_name) {
+    L$info("Combining %s", target_set_name)
+
     pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
 
     table_partitions <- cached_list %>% stringr::str_subset(pattern)
