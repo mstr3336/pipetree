@@ -1,5 +1,22 @@
 #' Load and merge all partitions that match a prefix
 #'
+#' @description
+#'
+#' Often, for performance and scalability reasons, dataframes across the
+#' pipeline are "partitioned" into chunks, and these chunks are processed in
+#' parallel.
+#'
+#' For example, a dataframe, such as `note_data_prepr` might be split into 50
+#' partitions.
+#'
+#' Each partition is named like so: `note_data_prepr_{partition_index}`, eg,
+#' `note_data_prepr_1`, `note_data_prepr_2`, ...  `note_data_prepr_50`.
+#'
+#' This is useful for the HPC, but acessing the full dataset is a pain for users.
+#' This function allows a user to specify the table name they want to extract, eg
+#' `note_data_prepr`, and each partition `note_data_prepr_``1`,`2`,`3` etc will be
+#' loaded and row binded.
+#'
 #' @export
 #' @param ... names of the target collections, as names (symbols) or chracter
 #'       strings, specifying the prefix of each parition set, that directly
