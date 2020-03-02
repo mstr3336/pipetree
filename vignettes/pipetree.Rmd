@@ -29,8 +29,8 @@ knitr::opts_chunk$set(
   and all output data is stored in a [drake::drake_cache()] within the data
   directory.
 - there may be more than one dataset of interest, to which the same workflow is applied
-  - If there are multiple datasets of interest, these datasets are stored in completely
-    separate directories, with an identical structure to the other datasets.
+    - If there are multiple datasets of interest, these datasets are stored in completely
+      separate directories, with an identical structure to one another.
 - This data directory may reside in a remote filesystem / volume
     - If the data directory is stored remotely, this remote volume must be able to be mounted
       on the local filesystem
