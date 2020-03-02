@@ -22,6 +22,19 @@ a named list of dataframes retrieved from the cache and combined.
 Each dataframe is named according the the input prefix.
 }
 \description{
-Load and merge all partitions that match a prefix
+Often, for performance and scalability reasons, dataframes across the
+pipeline are "partitioned" into chunks, and these chunks are processed in
+parallel.
+
+For example, a dataframe, such as \code{note_data_prepr} might be split into 50
+partitions.
+
+Each partition is named like so: \verb{note_data_prepr_\{partition_index\}}, eg,
+\code{note_data_prepr_1}, \code{note_data_prepr_2}, ...  \code{note_data_prepr_50}.
+
+This is useful for the HPC, but acessing the full dataset is a pain for users.
+This function allows a user to specify the table name they want to extract, eg
+\code{note_data_prepr}, and each partition \verb{note_data_prepr_``1},\code{2},\code{3} etc will be
+loaded and row binded.
 }
 \concept{cache_access}

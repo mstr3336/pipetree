@@ -36,7 +36,17 @@
 
 
 <meta property="og:title" content="Load and merge all partitions that match a prefix — load_merged_partitions" />
-<meta property="og:description" content="Load and merge all partitions that match a prefix" />
+<meta property="og:description" content="Often, for performance and scalability reasons, dataframes across the
+pipeline are &quot;partitioned&quot; into chunks, and these chunks are processed in
+parallel.
+For example, a dataframe, such as note_data_prepr might be split into 50
+partitions.
+Each partition is named like so: note_data_prepr_{partition_index}, eg,
+note_data_prepr_1, note_data_prepr_2, ...  note_data_prepr_50.
+This is useful for the HPC, but acessing the full dataset is a pain for users.
+This function allows a user to specify the table name they want to extract, eg
+note_data_prepr, and each partition note_data_prepr_``1,2,3 etc will be
+loaded and row binded." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,7 +122,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Load and merge all partitions that match a prefix</p>
+    <p>Often, for performance and scalability reasons, dataframes across the
+pipeline are "partitioned" into chunks, and these chunks are processed in
+parallel.</p>
+<p>For example, a dataframe, such as <code>note_data_prepr</code> might be split into 50
+partitions.</p>
+<p>Each partition is named like so: <code>note_data_prepr_{partition_index}</code>, eg,
+<code>note_data_prepr_1</code>, <code>note_data_prepr_2</code>, ...  <code>note_data_prepr_50</code>.</p>
+<p>This is useful for the HPC, but acessing the full dataset is a pain for users.
+This function allows a user to specify the table name they want to extract, eg
+<code>note_data_prepr</code>, and each partition <code>note_data_prepr_``1</code>,<code>2</code>,<code>3</code> etc will be
+loaded and row binded.</p>
     </div>
 
     <pre class="usage"><span class='fu'>load_merged_partitions</span>(<span class='no'>...</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
