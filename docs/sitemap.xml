@@ -22,10 +22,16 @@
     <loc>https://mstr3336.github.io/pipetree//reference/get_project_metadata.html</loc>
   </url>
   <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/load_merged_partitions.html</loc>
+  </url>
+  <url>
     <loc>https://mstr3336.github.io/pipetree//reference/metadata_template.html</loc>
   </url>
   <url>
     <loc>https://mstr3336.github.io/pipetree//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://mstr3336.github.io/pipetree//reference/pretty_string.html</loc>
   </url>
   <url>
     <loc>https://mstr3336.github.io/pipetree//articles/pipetree.html</loc>
