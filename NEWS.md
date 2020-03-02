@@ -1,3 +1,8 @@
+# pipetree 0.3.0
+
+- Add `load_merged_partitions`, for conveniently loading dataframes that have been 
+  split into partitions, and combining the various chunks of each dataframe back into one.
+
 # pipetree 0.2.1
 
 - Added non-interactive mode for `get_project_metadata`, so it doesnt bust sessions
