@@ -29,16 +29,16 @@ knitr::opts_chunk$set(
   and all output data is stored in a [drake::drake_cache()] within the data
   directory.
 - there may be more than one dataset of interest, to which the same workflow is applied
-  - If there are multiple datasets of interest, these datasets are stored in completely
-    separate directories, with an identical structure to the other datasets.
+    - If there are multiple datasets of interest, these datasets are stored in completely
+      separate directories, with an identical structure to one another.
 - This data directory may reside in a remote filesystem / volume
-  - If the data directory is stored remotely, this remote volume must be able to be mounted
-    on the local filesystem
-  - For information on mounting filesystems powered by `sshfs`, (Such as USYD's RCOS, or USYD's
-    HPC filesystem), see [this document](https://ctdshub.atlassian.net/wiki/spaces/HEAL/pages/840204341/Mount+RCOS+hpc+project+STEMI).
+    - If the data directory is stored remotely, this remote volume must be able to be mounted
+      on the local filesystem
+    - For information on mounting filesystems powered by `sshfs`, (Such as USYD's RCOS, or USYD's
+      HPC filesystem), see [this document](https://ctdshub.atlassian.net/wiki/spaces/HEAL/pages/840204341/Mount+RCOS+hpc+project+STEMI).
     - Examples of remote volumes in which data could be stored include:
-      - USYD's High Performance Computing Cluster's network filesystem, and
-      - USYD's RCOS data share.
+        - USYD's High Performance Computing Cluster's network filesystem, and
+        - USYD's RCOS data share.
 - It is assumed that you have some knowledge of basic usage of `drake` functions, or at least 
   [functions for drake cache usage](https://docs.ropensci.org/drake/reference/index.html#section-cache-usage)
 

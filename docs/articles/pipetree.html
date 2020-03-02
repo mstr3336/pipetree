@@ -86,15 +86,21 @@
 <ul>
 <li>You are a programmer, or analyst, who needs access to a project’s dataset.</li>
 <li>This project utilizes a <code>drake</code> workflow, and the data directory of the project is structured to contain a subdirectory containing raw input data, and all output data is stored in a [drake::drake_cache()] within the data directory.</li>
-<li>there may be more than one dataset of interest, to which the same workflow is applied</li>
-<li>If there are multiple datasets of interest, these datasets are stored in completely separate directories, with an identical structure to the other datasets.</li>
-<li>This data directory may reside in a remote filesystem / volume</li>
-<li>If the data directory is stored remotely, this remote volume must be able to be mounted on the local filesystem</li>
-<li>For information on mounting filesystems powered by <code>sshfs</code>, (Such as USYD’s RCOS, or USYD’s HPC filesystem), see <a href="https://ctdshub.atlassian.net/wiki/spaces/HEAL/pages/840204341/Mount+RCOS+hpc+project+STEMI">this document</a>.
+<li>there may be more than one dataset of interest, to which the same workflow is applied
 <ul>
-<li>Examples of remote volumes in which data could be stored include:</li>
+<li>If there are multiple datasets of interest, these datasets are stored in completely separate directories, with an identical structure to one another.</li>
+</ul>
+</li>
+<li>This data directory may reside in a remote filesystem / volume
+<ul>
+<li>If the data directory is stored remotely, this remote volume must be able to be mounted on the local filesystem</li>
+<li>For information on mounting filesystems powered by <code>sshfs</code>, (Such as USYD’s RCOS, or USYD’s HPC filesystem), see <a href="https://ctdshub.atlassian.net/wiki/spaces/HEAL/pages/840204341/Mount+RCOS+hpc+project+STEMI">this document</a>.</li>
+<li>Examples of remote volumes in which data could be stored include:
+<ul>
 <li>USYD’s High Performance Computing Cluster’s network filesystem, and</li>
 <li>USYD’s RCOS data share.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>It is assumed that you have some knowledge of basic usage of <code>drake</code> functions, or at least <a href="https://docs.ropensci.org/drake/reference/index.html#section-cache-usage">functions for drake cache usage</a>
@@ -145,7 +151,7 @@
 <p>Lets examine the file we’re going to tell our options to use</p>
 <p>The path:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(option_config, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
-<span class="co">#&gt; /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/option_config.yaml</span></code></pre></div>
+<span class="co">#&gt; /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/option_config.yaml</span></code></pre></div>
 <p>The contents:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(option_config)) <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(ln, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
 <span class="co">#&gt; d_root: /project/STEMI/</span></code></pre></div>
@@ -156,8 +162,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> option_config)</code></pre></div>
 <p>Now let’s load this configuration:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /project/STEMI/</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /project/STEMI/</span>
 portrpath
 <span class="co">#&gt; Root: /project/STEMI/</span>
 <span class="co">#&gt; Profiles:</span></code></pre></div>
@@ -168,7 +174,7 @@ portrpath
 <a href="#allowing-the-default-path-to-be-used" class="anchor"></a>Allowing the default path to be used</h2>
 <p>The default path for the configuration is relative to the active Rproject, and given by pipetree::default_config_path().</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">default_config &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/default_config_path.html">default_config_path</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /Users/matthew/work/repos/pipetree/local.yaml</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /Users/matthew/work/repos/pipetree/local.yaml</span>
 <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(default_config, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
 <span class="co">#&gt; /Users/matthew/work/repos/pipetree/local.yaml</span></code></pre></div>
 <p>Examining its contents:</p>
@@ -184,9 +190,9 @@ portrpath
 <p>Calling get_portrpath() with <code>pipetree.config</code> unset will behave differently:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> <span class="ot">NULL</span>)
 portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /Users/matthew/work/repos/pipetree/local.yaml</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /default/path/to/dataset</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /Users/matthew/work/repos/pipetree/local.yaml</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /default/path/to/dataset</span>
 portrpath
 <span class="co">#&gt; Root: /default/path/to/dataset</span>
 <span class="co">#&gt; Profiles:</span>
@@ -198,7 +204,7 @@ portrpath
 <a href="#setting-the-path-explicitly" class="anchor"></a>Setting the path explicitly</h2>
 <p>The path may be set explicitly using the <code>config_path</code> argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>(<span class="dt">config_path =</span> option_config)
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /project/STEMI/</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /project/STEMI/</span>
 portrpath
 <span class="co">#&gt; Root: /project/STEMI/</span>
 <span class="co">#&gt; Profiles:</span>
@@ -206,8 +212,8 @@ portrpath
 <p>Let’s return to the convenience of using the <code><a href="https://rdrr.io/r/base/options.html">options(pipetree.config)</a></code>, for now.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> option_config)
 portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /project/STEMI/</span></code></pre></div>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /project/STEMI/</span></code></pre></div>
 </div>
 <div id="using-the-config" class="section level2">
 <h2 class="hasAnchor">
@@ -216,13 +222,13 @@ portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">portrpath<span class="op">$</span><span class="kw">add_profile</span>(<span class="st">"temp"</span>, temp_root)
 portrpath<span class="op">$</span>profile &lt;-<span class="st"> "temp"</span>
 <span class="co">#&gt; Setting profile to temp</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span>
-<span class="co">#&gt; Setting root to /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span>
+<span class="co">#&gt; Setting root to /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span>
 portrpath
-<span class="co">#&gt; Root: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span>
+<span class="co">#&gt; Root: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span>
 <span class="co">#&gt; Profiles:</span>
 <span class="co">#&gt;     default: /project/STEMI/</span>
-<span class="co">#&gt;     temp: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span></code></pre></div>
+<span class="co">#&gt;     temp: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span></code></pre></div>
 </div>
 </div>
 <div id="access-to-the-filetree" class="section level1">
@@ -230,35 +236,35 @@ portrpath
 <a href="#access-to-the-filetree" class="anchor"></a>Access to the filetree</h1>
 <p>To access the filetree, we use get_paths(), similarly to how we loaded our config.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_paths.html">get_paths</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span>
 paths
 <span class="co">#&gt; $pipeline</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline"</span>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $raw</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline/raw"</span>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline/raw"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $preprocessed</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline/preprocessed"</span>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline/preprocessed"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $unclean</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline/preprocessed/unclean"</span>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline/preprocessed/unclean"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $partition</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline/partition"</span>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline/partition"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $root</span>
-<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz"</span></code></pre></div>
 </div>
 <div id="accessing-the-cache" class="section level1">
 <h1 class="hasAnchor">
 <a href="#accessing-the-cache" class="anchor"></a>Accessing the cache</h1>
 <p>For this demonstration, there is no real cache in place, but we can pretend.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cache &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_cache.html">get_cache</a></span>()
-<span class="co">#&gt; 2020-03-02 16:57:04 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk</span>
-<span class="co">#&gt; 2020-03-02 16:57:04 INFO:pipetree:Configuring drake to use an SQL based cache @ /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmp6hoCpk/pipeline/drake_cache.sqlite</span></code></pre></div>
+<span class="co">#&gt; 2020-03-02 17:06:35 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied, using getOption('pipetree.config')</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:PortrPath:Root in: /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz</span>
+<span class="co">#&gt; 2020-03-02 17:06:35 INFO:pipetree:Configuring drake to use an SQL based cache @ /var/folders/sn/jqrwf4ls0cj7f9jml4b3yjt00000gn/T//Rtmpngk6Vz/pipeline/drake_cache.sqlite</span></code></pre></div>
 <p>To use this cache to extract a target, for example, we have a target in our drake::drake_plan() called <code>mtcars</code>, we do the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtc &lt;-<span class="st"> </span>drake<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/drake/reference/readd.html">readd</a></span>(mtcars, <span class="dt">cache =</span> cache)</code></pre></div>
 </div>
