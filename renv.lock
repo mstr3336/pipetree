@@ -30,6 +30,13 @@
       "Repository": "CRAN",
       "Hash": "9efe80472b21189ebab1b74169808c26"
     },
+    "Matrix": {
+      "Package": "Matrix",
+      "Version": "1.2-18",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "08588806cba69f04797dab50627428ed"
+    },
     "R6": {
       "Package": "R6",
       "Version": "2.4.1",
@@ -78,6 +85,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "543776ae6848fde2f48ff3816d0628bc"
+    },
+    "base64url": {
+      "Package": "base64url",
+      "Version": "1.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "0c54cf3a08cc0e550fbd64ad33166143"
     },
     "bit": {
       "Package": "bit",
@@ -142,6 +156,20 @@
       "Repository": "CRAN",
       "Hash": "931fd68809dab4609b4d4b5702206066"
     },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "0.8.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3ecb1deedd4c4ad6ebf4605d263616f2"
+    },
+    "drake": {
+      "Package": "drake",
+      "Version": "7.11.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "331e17bca2f794d492b03a81d7bbcdd1"
+    },
     "ellipsis": {
       "Package": "ellipsis",
       "Version": "0.3.0",
@@ -162,6 +190,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7fce217eaaf8016e72065e85c73027b5"
+    },
+    "filelock": {
+      "Package": "filelock",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "38ec653c2613bed60052ba3787bd8a2c"
     },
     "fs": {
       "Package": "fs",
@@ -212,6 +247,13 @@
       "Repository": "CRAN",
       "Hash": "7146fea4685b4252ebf478978c75f597"
     },
+    "igraph": {
+      "Package": "igraph",
+      "Version": "1.2.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "fffa635f747cd07ffc56bc13a23701e4"
+    },
     "jsonlite": {
       "Package": "jsonlite",
       "Version": "1.6",
@@ -225,6 +267,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0eaaccb0946bf5ee33e2762882a4ae07"
+    },
+    "lattice": {
+      "Package": "lattice",
+      "Version": "0.20-38",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "848f8c593fd1050371042d18d152e3d7"
     },
     "logging": {
       "Package": "logging",
@@ -453,12 +502,26 @@
       "Repository": "CRAN",
       "Hash": "8248ee35d1e15d1e506f05f5a5d46a75"
     },
+    "tidyselect": {
+      "Package": "tidyselect",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7d4b0f1ab542d8cb7a40c593a4de2f36"
+    },
     "tinytex": {
       "Package": "tinytex",
       "Version": "0.19",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b1c0c22cab714ec9ce9472a8073b6922"
+    },
+    "txtq": {
+      "Package": "txtq",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "92e5a36ad5b445e895a0f9b98db4d810"
     },
     "utf8": {
       "Package": "utf8",
