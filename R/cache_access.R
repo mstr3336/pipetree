@@ -46,7 +46,7 @@ load_merged_partitions <- function(
 
 
   fetch_and_combine <- function(target_set_name) {
-    pattern <- paste0(pats$prefix, tartget_set_name, pats$suffix)
+    pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
 
     table_partitions <- cached_list %>% stringr::str_subset(pattern)
 
