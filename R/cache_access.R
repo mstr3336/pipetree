@@ -11,6 +11,7 @@
 #'              retrieved
 #' @return a named list of dataframes retrieved from the cache and combined.
 #'         Each dataframe is named according the the input prefix.
+#' @family cache_access
 load_merged_partitions <- function(
   ...,
   cache = NULL
