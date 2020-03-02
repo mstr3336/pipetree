@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default Path to Search for Local Configuration — default_config_path • pipetree</title>
+<title>Load and merge all partitions that match a prefix — load_merged_partitions • pipetree</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Default Path to Search for Local Configuration — default_config_path" />
-<meta property="og:description" content="This function returns a default for the local config file." />
+<meta property="og:title" content="Load and merge all partitions that match a prefix — load_merged_partitions" />
+<meta property="og:description" content="Load and merge all partitions that match a prefix" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,37 +106,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default Path to Search for Local Configuration</h1>
+    <h1>Load and merge all partitions that match a prefix</h1>
     
-    <div class="hidden name"><code>default_config_path.Rd</code></div>
+    <div class="hidden name"><code>load_merged_partitions.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function returns a default for the local config file.</p>
+    <p>Load and merge all partitions that match a prefix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>default_config_path</span>()</pre>
+    <pre class="usage"><span class='fu'>load_merged_partitions</span>(<span class='no'>...</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>names of the target collections, as names (symbols) or chracter
+strings, specifying the prefix of each parition set, that directly
+precedes a given subpartition's index.
+For example, to load and combine <code>journey_analysis_base_1</code>,
+<code>journey_analysis_base_2</code>, ..., <code>journey_analysis_base_50</code>, supply
+<code>journey_analysis_base</code> as an argument.</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p>the <a href='https://docs.ropensci.org/drake/reference/drake_cache.html'>drake::drake_cache</a> object from which the values will be
+retrieved</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Get the default config path</p>
-    <h2 class="hasAnchor" id="default-config-path"><a class="anchor" href="#default-config-path"></a>Default Config Path</h2>
-
-    
-
-<p>This is given by the following:<div class="r"></p><pre>file.path(here::here(), "local.yaml")
-</pre><p></div></p>
-<p>That is:</p>
-<p><em>Assuming</em> <strong>.</strong> <em>refers to the root of the current Rproject:</em></p>
-<p>"./local.yaml"</p>
+    <p>a named list of dataframes retrieved from the cache and combined.
+Each dataframe is named according the the input prefix.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#default-config-path">Default Config Path</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>
