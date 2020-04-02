@@ -1,3 +1,11 @@
+# pipetree 0.4.0
+
+## Modifications
+
+- Now `get_project_metadata` includes information about the VCS versioning and 
+  package version of the calling env, as well as the time at which the metadata was
+  fetched.
+
 # pipetree 0.3.0
 
 - Add `load_merged_partitions`, for conveniently loading dataframes that have been 

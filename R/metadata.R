@@ -12,11 +12,15 @@
 #' @inheritParams get_cache
 #' @param interactive use this for noninteractive scripts to handle missing
 #'        metadata without user input
+#' @param current_package_name the name of the calling package - If not given, will attempt to use
+#'                             the package name of whatever function calls this
 #' @family metadata
 #' @export
-get_project_metadata <- function(root = NULL, interactive = TRUE) {
+get_project_metadata <- function(root = NULL, interactive = TRUE, current_package_name = NULL) {
   if (rlang::is_empty(root)) root <- get_paths() %>% .$root
   g <- glue::glue
+
+  if (rlang::is_empty(current_package_name)) current_package_name <- getPackageName(parent.frame())
 
   root %<>% pathlibr::Path$new()
   path <- root$join("metadata.yaml")
@@ -25,10 +29,36 @@ get_project_metadata <- function(root = NULL, interactive = TRUE) {
   if (!file.exists(path$show) ) metadata <- metadata_handle_missing(path$show, interactive = interactive)
   else metadata <- yaml::read_yaml(path$show)
 
-  L$info("Using metadata file: ")
+  metadata %<>% metadata_handle_runtime(package_name = current_package_name)
+
+  L$info("Usng metadata file: ")
   L$info("\n%s", yaml::as.yaml(metadata))
 
   return(metadata)
+}
+
+metadata_handle_runtime <- function(metadata, package_name = NULL) {
+  repo_head <- git2r::repository_head()
+  last_commit <- git2r::last_commit()
+
+  metadata$version <- list()
+
+  metadata$version$commit <- last_commit[c("sha", "author", "message")]
+  metadata$version$branch <- repo_head$name
+
+  metadata$version$package <- list(
+    name = package_name
+  )
+
+  if (rlang::is_empty(metadata$version$package$name)) {
+    metadata$version$package$version <- "0.0.0"
+  } else {
+    metadata$version$package$version <- packageVersion(metadata$version$package$name)
+  }
+
+  metadata$version$run_dttm <- Sys.time()
+
+  metadata
 }
 
 metadata_handle_missing <- function(path, interactive = TRUE) {

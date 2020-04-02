@@ -71,7 +71,7 @@ An example metadata file is as follows:" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pipetree</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -119,7 +119,11 @@ If none exists, query for it interactively.</p>
 <p>An example metadata file is as follows:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_project_metadata</span>(<span class='kw'>root</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>interactive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_project_metadata</span>(
+  <span class='kw'>root</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>interactive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>current_package_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +137,11 @@ whatever root is currently set by <code><a href='get_portrpath.html'>get_portrpa
       <th>interactive</th>
       <td><p>use this for noninteractive scripts to handle missing
 metadata without user input</p></td>
+    </tr>
+    <tr>
+      <th>current_package_name</th>
+      <td><p>the name of the calling package - If not given, will attempt to use
+the package name of whatever function calls this</p></td>
     </tr>
     </table>
 
