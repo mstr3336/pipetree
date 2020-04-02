@@ -1,9 +1,10 @@
-# pipetree 0.3.0.9001
+# pipetree 0.3.0.9002
 
 ## Modifications
 
 - Now `get_project_metadata` includes information about the VCS versioning and 
-  package version of the calling env
+  package version of the calling env, as well as the time at which the metadata was
+  fetched.
 
 # pipetree 0.3.0
 
