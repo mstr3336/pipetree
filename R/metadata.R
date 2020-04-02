@@ -56,6 +56,8 @@ metadata_handle_runtime <- function(metadata, package_name = NULL) {
     metadata$version$package$version <- packageVersion(metadata$version$package$name)
   }
 
+  metadata$version$run_dttm <- Sys.time()
+
   metadata
 }
 
