@@ -12,7 +12,8 @@
 #' @inheritParams get_cache
 #' @param interactive use this for noninteractive scripts to handle missing
 #'        metadata without user input
-#' @param current_package_name the name of the calling package
+#' @param current_package_name the name of the calling package - If not given, will attempt to use
+#'                             the package name of whatever function calls this
 #' @family metadata
 #' @export
 get_project_metadata <- function(root = NULL, interactive = TRUE, current_package_name = NULL) {
