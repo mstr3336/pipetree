@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • pipetree</title>
+<title>Resolve the configuration path — resolve_config_path • pipetree</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details.
-See magrittr::%&amp;lt;&amp;gt;% for details." />
+<meta property="og:title" content="Resolve the configuration path — resolve_config_path" />
+<meta property="og:description" content="Resolve the configuration path" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,26 +106,38 @@ See magrittr::%&amp;lt;&amp;gt;% for details." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
+    <h1>Resolve the configuration path</h1>
     
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <div class="hidden name"><code>resolve_config_path.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
-<p>See <code>magrittr::%&lt;&gt;%</code> for details.</p>
+    <p>Resolve the configuration path</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span>
+    <pre class="usage"><span class='fu'>resolve_config_path</span>()</pre>
 
-<span class='no'>lhs</span> <span class='kw'>%&lt;&gt;%</span> <span class='no'>rhs</span></pre>
 
+    <h2 class="hasAnchor" id="specifying-config-path"><a class="anchor" href="#specifying-config-path"></a>Specifying Config path</h2>
+
+    
+
+<p>The pipetree config path can be set using a number of mechanisms.</p>
+<p>If the path is set in multiple places, the path chosen will
+prioritize in order of more specific settings befroe less specific.</p>
+<p>In order of first-used, the config path can be described as below:</p><ul>
+<li><p>Explicitly providing the path in a call to a <code>pipetree</code> function</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>getOption('pipetree.config')</a></code></p></li>
+<li><p>The system environment variable PIPETREE_CONFIG_PATH</p></li>
+<li><p>The default config path given by <code><a href='default_config_path.html'>default_config_path()</a></code>.</p></li>
+</ul>
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#specifying-config-path">Specifying Config path</a></li>
     </ul>
 
   </div>
