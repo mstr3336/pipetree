@@ -127,6 +127,14 @@ portrpath <- pipetree::get_portrpath()
 portrpath
 ```
 
+## Using an envrionment variable
+
+The path may also be set using a system env variable:
+
+`r pipetree::pipetree_config_env_var()`.
+
+Set this in your `~/.bashrc`, `.Renviron`, or wherever suits you.
+
 ## Allowing the default path to be used
 
 The default path for the configuration is relative to the active 
