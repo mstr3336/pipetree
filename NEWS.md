@@ -1,3 +1,9 @@
+# pipetree 0.4.0.9001
+
+## Modifications 
+
+- Allow config path to be given using sys env variable.
+
 # pipetree 0.4.0
 
 ## Modifications
