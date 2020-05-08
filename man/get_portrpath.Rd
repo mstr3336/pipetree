@@ -29,3 +29,19 @@ That is:
 "./local.yaml"
 }
 
+\section{Specifying Config path}{
+
+The pipetree config path can be set using a number of mechanisms.
+
+If the path is set in multiple places, the path chosen will
+prioritize in order of more specific settings befroe less specific.
+
+In order of first-used, the config path can be described as below:
+\itemize{
+\item Explicitly providing the path in a call to a \code{pipetree} function
+\item \code{getOption('pipetree.config')}
+\item The system environment variable PIPETREE_CONFIG_PATH
+\item The default config path given by \code{\link[=default_config_path]{default_config_path()}}.
+}
+}
+
