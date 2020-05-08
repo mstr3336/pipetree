@@ -1,3 +1,5 @@
+pipetree_config_env_var <- function() return("PIPETREE_CONFIG_PATH")
+
 #' Default Path to Search for Local Configuration
 #'
 #' Get the default config path
@@ -39,12 +41,13 @@ default_config_path <- function() {
 #'
 #' - Explicitly providing the path in a call to a `pipetree` function
 #' - `getOption('pipetree.config')`
-#' - The system environment variable `"PIPETREE_CONFIG_PATH"`
+#' - The system environment variable `r pipetree:::pipetree_config_env_var()`
 #' - The default config path given by [default_config_path()].
 #'
 resolve_config_path <- function() {
   `%||%` <- rlang::`%||%`
-  env_var <- "PIPETREE_CONFIG_PATH"
+  env_var <- pipetree_config_env_var()
+
 
   msg <- glue::glue("No config path supplied")
   L$warn(msg)
@@ -76,7 +79,7 @@ resolve_config_path <- function() {
 #' for more info.
 #'
 #' @inheritSection default_config_path Default Config Path
-#'
+#' @inheritSection resolve_config_path Specifying Config path
 #' @param config_path the path to the configuration `yaml` file. If not
 #'        specified, this will be given by `getOption("pipetree.config")`,
 #'        and if this is unset, will be given by [default_config_path()].
