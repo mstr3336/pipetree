@@ -1,3 +1,5 @@
+pipetree_config_env_var <- function() return("PIPETREE_CONFIG_PATH")
+
 #' Default Path to Search for Local Configuration
 #'
 #' Get the default config path
@@ -26,13 +28,47 @@ default_config_path <- function() {
   return(out)
 }
 
+
+#' Resolve the configuration path
+#'
+#' @section Specifying Config path:
+#' The pipetree config path can be set using a number of mechanisms.
+#'
+#' If the path is set in multiple places, the path chosen will
+#' prioritize in order of more specific settings befroe less specific.
+#'
+#' In order of first-used, the config path can be described as below:
+#'
+#' - Explicitly providing the path in a call to a `pipetree` function
+#' - `getOption('pipetree.config')`
+#' - The system environment variable `r pipetree:::pipetree_config_env_var()`
+#' - The default config path given by [default_config_path()].
+#'
 resolve_config_path <- function() {
   `%||%` <- rlang::`%||%`
+  env_var <- pipetree_config_env_var()
 
-  msg <- glue::glue("No config path supplied, using getOption('pipetree.config')")
-  #warning(msg)
+
+  msg <- glue::glue("No config path supplied")
   L$warn(msg)
-  config_path <- getOption("pipetree.config") %||% default_config_path()
+
+  #warning(msg)
+
+  config_path <- getOption("pipetree.config")
+  if (!rlang::is_empty(config_path)) {
+    L$info("Using getOption('pipetree.config')")
+    return(config_path)
+  }
+
+  config_path <- Sys.getenv(env_var, unset = NA)
+  if (!is.na(config_path)) {
+    L$info(glue::glue('Using "${{{env_var}}}"'))
+    return(config_path)
+  }
+
+  config_path <- default_config_path()
+
+  L$info("Using default_config_path(): ", config_path)
   return(config_path)
 }
 
@@ -43,7 +79,7 @@ resolve_config_path <- function() {
 #' for more info.
 #'
 #' @inheritSection default_config_path Default Config Path
-#'
+#' @inheritSection resolve_config_path Specifying Config path
 #' @param config_path the path to the configuration `yaml` file. If not
 #'        specified, this will be given by `getOption("pipetree.config")`,
 #'        and if this is unset, will be given by [default_config_path()].
