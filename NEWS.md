@@ -1,8 +1,9 @@
-# pipetree 0.4.0.9002
+# pipetree 0.4.1
 
 ## Modifications 
 
 - Allow config path to be given using sys env variable.
+- Change `load_merged_partitions()` to fetch the list of cached targets via `cache$list()` rather than `drake::cached(cache = cache)`, as it seems much faster.
 
 ## Minor
 
