@@ -56,7 +56,8 @@ load_merged_partitions <- function(
 
   L$debug("Fetching list of targets")
 
-  cached_list <- drake::cached(cache = cache)
+  # cache$list() seems a lot faster than drake::cached(cache)
+  cached_list <- cache$list()
 
   L$debug("Fetched list of target")
 
