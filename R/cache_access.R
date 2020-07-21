@@ -54,7 +54,11 @@ load_merged_partitions <- function(
     prefix = "^"
   )
 
+  L$debug("Fetching list of targets")
+
   cached_list <- drake::cached(cache = cache)
+
+  L$debug("Fetched list of target")
 
   load_and_combine <- function(already_combined, df_name) {
     `%||%` <- rlang::`%||%`
