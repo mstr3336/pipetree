@@ -2,6 +2,7 @@
 
 export("%<>%")
 export("%>%")
+export(cfetch)
 export(default_config_path)
 export(describe_list_function)
 export(get_cache)

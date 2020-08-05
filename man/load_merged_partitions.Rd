@@ -37,4 +37,8 @@ This function allows a user to specify the table name they want to extract, eg
 \code{note_data_prepr}, and each partition \verb{note_data_prepr_``1},\code{2},\code{3} etc will be
 loaded and row binded.
 }
+\seealso{
+Other cache_access: 
+\code{\link{cfetch}()}
+}
 \concept{cache_access}
