@@ -1,3 +1,10 @@
+# pipetree 0.4.1.9001
+
+## Additions
+
+- Added `cfetch()`, which uses a __super__ simple local cache (`xfun::rds_cache()`) to wrap
+  calls to `load_merged_partitions()`
+
 # pipetree 0.4.1
 
 ## Modifications 
