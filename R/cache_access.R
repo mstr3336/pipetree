@@ -96,3 +96,68 @@ load_merged_partitions <- function(
 
   out
 }
+
+
+check_cache_hashes <- function(target_set_name, cache) {
+  pats <- list(
+    suffix = "(_\\d+)?$",
+    prefix = "^"
+  )
+
+  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+
+  object_list <- cache$list()
+
+  object_list %<>% stringr::str_subset(pattern)
+
+  object_list %<>% cache$mget(namespace = "meta")
+
+  object_names <- object_list %>%
+    purrr::map_chr("target", .default = NA_character_)
+
+  object_list %<>%
+    .[!is.na(object_names)] %>%
+    rlang::set_names(object_names %>% .[!is.na(.)]) %>%
+    purrr::map_chr("hash")
+
+  object_list
+}
+
+
+#' Fetch a target locally if cached, otherwise fetch from remote and cache.
+#'
+#' Given the name of the target/target set, and the `remote_cache`, this will
+#' query the target's hash*(es)* from the remote, and then fetch it only if
+#' a locally cached copy doesn't already exist.
+#'
+#' @details
+#' This uses a very simple cache implementation, from `xfun::rds_cache()`, and
+#' by default will just dump a `cache` directory in the current wd.
+#'
+#' `xfun::rds_cache()` describes how to configure this.
+#'
+#' I may add more caching params if necessary later.
+#'
+#' `remote_cache` is distinct from the local, `xfun::rds_cache()`
+#' @seealso xfun::rds_cache()
+#' @family cache_access
+#' @param target_set_name a __single__ quoted `"string"`, providing the name of the
+#'        target, or cluster of targets.
+#' @param remote_cache the [drake::drake_cache] object from which the target
+#'        will be retrieved, and the metadata queried.
+#' @export
+cfetch <- function(target_set_name, remote_cache) {
+  target_set_name <- rlang::expr(!!target_set_name)
+
+  out <- xfun::cache_rds({
+    res <- pipetree::load_merged_partitions(
+      !!target_set_name, cache = remote_cache) %>%
+      .[[1]]
+    res
+  },
+  hash = check_cache_hashes(target_set_name, remote_cache),
+  file = target_set_name
+  )
+
+  out
+}
