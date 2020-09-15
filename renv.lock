@@ -142,6 +142,13 @@
       "Repository": "CRAN",
       "Hash": "2b7d10581cc730804e9ed178c8374bd6"
     },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.13.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "06d5863292e2e8ffbb063ce34e77bb2a"
+    },
     "desc": {
       "Package": "desc",
       "Version": "1.2.0",
@@ -155,13 +162,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "931fd68809dab4609b4d4b5702206066"
-    },
-    "dplyr": {
-      "Package": "dplyr",
-      "Version": "0.8.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3ecb1deedd4c4ad6ebf4605d263616f2"
     },
     "drake": {
       "Package": "drake",
@@ -515,13 +515,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "08bd36bd34b20d4f7971d49e81deaab0"
-    },
-    "tidyselect": {
-      "Package": "tidyselect",
-      "Version": "1.0.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7d4b0f1ab542d8cb7a40c593a4de2f36"
     },
     "tinytex": {
       "Package": "tinytex",

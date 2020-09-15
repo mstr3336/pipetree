@@ -69,7 +69,7 @@ load_merged_partitions <- function(
             )
 
     out <- drake::readd(df_name, character_only = TRUE, cache = cache)
-    out <- dplyr::bind_rows(already_combined, out)
+    out <- data.table::rbindlist(list(already_combined, out))
     return(out)
   }
 
