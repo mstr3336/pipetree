@@ -33,6 +33,7 @@ Imports:
     RSQLite,
     storr,
     magrittr,
-    xfun
+    xfun,
+    data.table
 Remotes: mstr3336/pathlibr, mstr3336/portrpaths
 VignetteBuilder: knitr
