@@ -172,7 +172,7 @@ export_single_target <- function(target_name, dir_out, cache) {
 
   L$debug("Saving %s => %s", target_name, path_out)
 
-  target %>% qs::qsave(path_out)
+  target %>% qs::qsave(path_out, nthreads = 4)
 }
 
 
