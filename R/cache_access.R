@@ -185,12 +185,18 @@ export_single_target <- function(target_name, dir_out, cache) {
 #'
 #' @export
 export_deidentified_notes <- function(dir_out, cache) {
+  target_set_name <- "notes_deidentified"
+  export_target_set(target_set_name, dir_out, cache)
+
+  invisible(NULL)
+}
+
+export_target_set <- function(target_set_name, dir_out, cache)  {
   pats <- list(
     suffix = "(_\\d+)?$",
     prefix = "^"
   )
 
-  target_set_name <- "notes_deidentified"
   pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
 
   targets <- cache$list()
