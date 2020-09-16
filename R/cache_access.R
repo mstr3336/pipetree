@@ -161,3 +161,42 @@ cfetch <- function(target_set_name, remote_cache) {
 
   out
 }
+
+
+export_single_target <- function(target_name, dir_out, cache) {
+  target <- drake::readd(target_name, character_only = TRUE, cache = cache)
+
+
+  path_out <- paste0(target_name, ".qs")
+  path_out <- file.path(dir_out, path_out)
+
+  L$debug("Saving %s => %s", target_name, path_out)
+
+  target %>% qs::qsave(path_out)
+}
+
+
+#' Export deidentified notes
+#'
+#' Export deidentified notes as rds from the cache to a directory
+#' This function is to be used to provide deidentified inputs to
+#' the pipeline (Which were previously outputs of the pipeline),
+#' in order to fully remove identifiable data from the pipeline.
+#'
+#' @export
+export_deidentified_notes <- function(dir_out, cache) {
+  pats <- list(
+    suffix = "(_\\d+)?$",
+    prefix = "^"
+  )
+
+  target_set_name <- "notes_deidentified"
+  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+
+  targets <- cache$list()
+
+  targets %<>% stringr::str_subset(pattern)
+
+  targets %>%
+    purrr::walk(~ export_single_target(., dir_out = dir_out, cache = cache))
+}
