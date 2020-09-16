@@ -184,6 +184,7 @@ export_single_target <- function(target_name, dir_out, cache) {
 #' in order to fully remove identifiable data from the pipeline.
 #'
 #' @export
+#' @inheritParams export_target_set
 export_deidentified_notes <- function(dir_out, cache) {
   target_set_name <- "notes_deidentified"
   export_target_set(target_set_name, dir_out, cache)
@@ -191,6 +192,16 @@ export_deidentified_notes <- function(dir_out, cache) {
   invisible(NULL)
 }
 
+#' Export all partitions of a table to file
+#'
+#' Save all partitions of a particular table to a directory.
+#' Presently saves using the `qs` format, as this is meant to be fast (ooh).
+#' For now I'm going to default it to using 4 threads
+#'
+#' @export
+#' @param dir_out the path to the directory under which to save the targets
+#' @inheritParams load_merged_partitions
+#' @inheritParams cfetch
 export_target_set <- function(target_set_name, dir_out, cache)  {
   pats <- list(
     suffix = "(_\\d+)?$",
