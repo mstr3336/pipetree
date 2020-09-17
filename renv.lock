@@ -44,6 +44,13 @@
       "Repository": "CRAN",
       "Hash": "292b54f8f4b94669b08f94e5acce6be2"
     },
+    "RApiSerialize": {
+      "Package": "RApiSerialize",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c5a68b4db79cfe8502878b3ed2b59853"
+    },
     "RSQLite": {
       "Package": "RSQLite",
       "Version": "2.2.0",
@@ -57,6 +64,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f3ca785924863b0e4c8cb23b6a5c75a1"
+    },
+    "RcppParallel": {
+      "Package": "RcppParallel",
+      "Version": "5.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "202048b11e2618223c7e7006dc4b77a3"
     },
     "askpass": {
       "Package": "askpass",
@@ -116,17 +130,17 @@
     },
     "callr": {
       "Package": "callr",
-      "Version": "3.3.0",
+      "Version": "3.4.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "b3c10a6b94482a227ba11e245c194884"
+      "Hash": "e56fe17ffeddfdcfcef40981e41e1c40"
     },
     "cli": {
       "Package": "cli",
-      "Version": "2.0.1",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5173d8ab28680cf263636b110f4f3220"
+      "Hash": "ff0becff7bfdfe3f75d29aff8f3172dd"
     },
     "crayon": {
       "Package": "crayon",
@@ -263,10 +277,10 @@
     },
     "jsonlite": {
       "Package": "jsonlite",
-      "Version": "1.6",
+      "Version": "1.7.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "bc5739654d032acf531356e32e0d0f54"
+      "Hash": "1ec84e070b88b37ed169f19def40d47c"
     },
     "knitr": {
       "Package": "knitr",
@@ -432,6 +446,13 @@
       "Repository": "CRAN",
       "Hash": "22aca7d1181718e927d403a8c2d69d62"
     },
+    "qs": {
+      "Package": "qs",
+      "Version": "0.23.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a0491accccb1c156a58668e01e8f4f66"
+    },
     "rematch2": {
       "Package": "rematch2",
       "Version": "2.1.0",
@@ -469,10 +490,10 @@
     },
     "rstudioapi": {
       "Package": "rstudioapi",
-      "Version": "0.10",
+      "Version": "0.11",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "da31c988698b91fdf6a3e2317679d6cb"
+      "Hash": "33a5b27a03da82ac4b1d43268f80088a"
     },
     "storr": {
       "Package": "storr",
@@ -480,6 +501,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0a3635220b58f2c2faccd78e97b0cafd"
+    },
+    "stringfish": {
+      "Package": "stringfish",
+      "Version": "0.14.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "068640b1efcfae4c7e2f5556149624eb"
     },
     "stringi": {
       "Package": "stringi",
@@ -504,10 +532,10 @@
     },
     "testthat": {
       "Package": "testthat",
-      "Version": "2.3.1",
+      "Version": "2.3.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "68dad590f6445cdcdaa5b7eec60e9686"
+      "Hash": "0829b987b8961fb07f3b1b64a2fbc495"
     },
     "tibble": {
       "Package": "tibble",

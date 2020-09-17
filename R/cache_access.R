@@ -161,3 +161,59 @@ cfetch <- function(target_set_name, remote_cache) {
 
   out
 }
+
+
+export_single_target <- function(target_name, dir_out, cache) {
+  target <- drake::readd(target_name, character_only = TRUE, cache = cache)
+
+
+  path_out <- paste0(target_name, ".qs")
+  path_out <- file.path(dir_out, path_out)
+
+  L$info("Saving %s => %s", target_name, path_out)
+
+  target %>% qs::qsave(path_out, nthreads = 4)
+}
+
+
+#' Export deidentified notes
+#'
+#' Export deidentified notes as rds from the cache to a directory
+#' This function is to be used to provide deidentified inputs to
+#' the pipeline (Which were previously outputs of the pipeline),
+#' in order to fully remove identifiable data from the pipeline.
+#'
+#' @export
+#' @inheritParams export_target_set
+export_deidentified_notes <- function(dir_out, cache) {
+  target_set_name <- "notes_deidentified"
+  export_target_set(target_set_name, dir_out, cache)
+
+  invisible(NULL)
+}
+
+#' Export all partitions of a table to file
+#'
+#' Save all partitions of a particular table to a directory.
+#' Presently saves using the `qs` format, as this is meant to be fast (ooh).
+#' For now I'm going to default it to using 4 threads
+#'
+#' @export
+#' @param dir_out the path to the directory under which to save the targets
+#' @inheritParams load_merged_partitions
+#' @inheritParams cfetch
+export_target_set <- function(target_set_name, dir_out, cache)  {
+  pats <- list(
+    suffix = "(_\\d+)?$",
+    prefix = "^"
+  )
+
+  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+
+  targets <- cache$list()
+
+  targets %<>% stringr::str_subset(pattern)
+
+  targets %>%
+    purrr::walk(~ export_single_target(., dir_out = dir_out, cache = cache))
+}

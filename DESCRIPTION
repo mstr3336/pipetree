@@ -1,6 +1,6 @@
 Package: pipetree
 Title: Wrappers for Navigating the Resource Tree of SPEED-EXTRACT
-Version: 0.4.1.9002
+Version: 0.4.1.9003
 Authors@R: 
     person(given = c("Matthew", "Mark"),
            family = "Strasiotto",

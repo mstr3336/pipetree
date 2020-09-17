@@ -1,15 +1,23 @@
-# pipetree 0.4.1.9002
+# pipetree 0.4.1.9003
 
 ## Additions
 
 - Added `cfetch()`, which uses a __super__ simple local cache (`xfun::rds_cache()`) to wrap
   calls to `load_merged_partitions()`
+- Added `export_target_set()` & `export_deidentified_notes()`, which conveniently export
+  a set of targets from cache to a directory. Presently, the qs package is used for this.
 
 ## Modifications
 
 - Modified `load_merged_partitions` to internally use `data.table::rbindlist()`, instead of
   `dplyr::bind_rows`. This should decrease memory usage, and increase speed.
   ( @datarichard [#25](https://github.com/mstr3336/pipetree/issues/25) )
+
+## Potential Ouchies
+
+- Added dependency on `qs` package. Care has been taken to ensure that this is available on HPC,
+  but at some point, if maintaining this dependency on the HPC is too burdensome, it may be worthwhile
+  to forgo the performance improvements afforded by `qs` and just use saveRDS.
 
 # pipetree 0.4.1
 
