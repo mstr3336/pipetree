@@ -171,10 +171,9 @@ cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
 
   if (dir.exists(dir)) {
     writeLines(c(
-      "# Ignore all rds in this cache",
-      "*.rds",
-      "# Ignore readme/metadata about this cache",
-      metadata_name),
+      "# Ignore everything in this cache",
+      "*"
+      ),
       con = file.path(dir, ".gitignore"))
 
     writeLines(c(
