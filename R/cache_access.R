@@ -1,3 +1,12 @@
+can_show_progress_bar <- function(override = NULL) {
+  if (rlang::is_logical(override)) return(override)
+
+  out <- getOption("pipetree.progress_bar", TRUE)
+
+  if (!rlang::is_logical(out)) return(TRUE)
+  return(out)
+}
+
 #' Load and merge all partitions that match a prefix
 #'
 #' @description
@@ -54,21 +63,36 @@ load_merged_partitions <- function(
     prefix = "^"
   )
 
-  L$debug("Fetching list of targets")
+  where <- "{connection printout not implemented}"
+  switch (cache$driver$con_type,
+          SQLiteConnection = {
+            where <- RSQLite::dbGetInfo(cache$driver$con)$dbname
+          }
+  )
+
+  L$debug("Fetching list of targets from %s", where)
 
   # cache$list() seems a lot faster than drake::cached(cache)
   cached_list <- cache$list()
 
-  L$debug("Fetched list of target")
+  L$debug("Fetched list of targets from %s", where)
 
-  load_and_combine <- function(already_combined, df_name) {
+
+  load_and_combine <- function(already_combined, df_name, pb = NULL, target_set_name = NULL) {
     `%||%` <- rlang::`%||%`
     L$debug("Appending '%s' to merged df, nrow before: %s",
             df_name,
             nrow(already_combined) %||% 0
             )
 
+
+
     out <- drake::readd(df_name, character_only = TRUE, cache = cache)
+
+    if ("progress_bar" %in% class(pb)) {
+      pb$tick(tokens = list(what = target_set_name))
+    }
+
     out <- data.table::rbindlist(list(already_combined, out))
     return(out)
   }
@@ -77,12 +101,25 @@ load_merged_partitions <- function(
   fetch_and_combine <- function(target_set_name) {
     L$info("Combining %s", target_set_name)
 
+
     pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
 
     table_partitions <- cached_list %>% stringr::str_subset(pattern)
 
+    pb <- NULL
+    if (can_show_progress_bar()) {
+      pb <- progress::progress_bar$new(
+        format = "  fetching :what [:bar] :percent eta :eta",
+        total = length(table_partitions),
+      )
+
+      pb$tick(0, tokens = list(what = target_set_name))
+    }
+
+
+
     combined <- table_partitions %>%
-      purrr::reduce(load_and_combine, .init = NULL)
+      purrr::reduce(load_and_combine, pb = pb, target_set_name = target_set_name, .init = NULL)
 
     return(combined)
   }
