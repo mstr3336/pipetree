@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pipetree</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -155,7 +155,7 @@
 <p>Lets examine the file we’re going to tell our options to use</p>
 <p>The path:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(option_config, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; /tmp/Rtmpz8sOlL/option_config.yaml</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; /tmp/RtmpBsr3T7/option_config.yaml</span></a></code></pre></div>
 <p>The contents:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(option_config)) <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(ln, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; d_root: /project/STEMI/</span></a></code></pre></div>
@@ -165,10 +165,10 @@
 <a href="#setting-the-option" class="anchor"></a>Setting the option</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> option_config)</a></code></pre></div>
 <p>Now let’s load this configuration:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Using getOption('pipetree.config')</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /project/STEMI/</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_portrpath.html">get_portrpath</a></span>()</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; 2020-10-12 13:27:41 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:pipetree:Using getOption('pipetree.config')</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /project/STEMI/</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">portrpath</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; Root: /project/STEMI/</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; Profiles:</span></a></code></pre></div>
@@ -185,8 +185,8 @@
 <h2 class="hasAnchor">
 <a href="#allowing-the-default-path-to-be-used" class="anchor"></a>Allowing the default path to be used</h2>
 <p>The default path for the configuration is relative to the active Rproject, and given by pipetree::default_config_path().</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">default_config &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/default_config_path.html">default_config_path</a></span>()</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /home/matty/work/repos/pipetree/local.yaml</span></a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">default_config &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/default_config_path.html">default_config_path</a></span>()</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; 2020-10-12 13:27:41 </span><span class="al">WARNING</span><span class="co">:pipetree:No path given, using default: /home/matty/work/repos/pipetree/local.yaml</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(default_config, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; /home/matty/work/repos/pipetree/local.yaml</span></a></code></pre></div>
 <p>Examining its contents:</p>
@@ -201,12 +201,12 @@
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;   alt: /alternate/path/to/dataset</span></a></code></pre></div>
 <p>Calling get_portrpath() with <code>pipetree.config</code> unset will behave differently:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Using "${PIPETREE_CONFIG_PATH}"</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /project/ACS/workflows/bulk_5_year/</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_portrpath.html">get_portrpath</a></span>()</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; 2020-10-12 13:27:41 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:pipetree:Using "${PIPETREE_CONFIG_PATH}"</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /media/matty/Big_Boy/Work/Data/testing</span></a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">portrpath</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; Root: /project/ACS/workflows/bulk_5_year/</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; Root: /media/matty/Big_Boy/Work/Data/testing</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; Profiles:</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;     default: /media/matty/Big_Boy/Work/Data/RDS-FHS-STEMI-RW</span></a>
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;     hpc: /project/STEMI/workflows/bulk_2013_2014/</span></a>
@@ -220,18 +220,18 @@
 <h2 class="hasAnchor">
 <a href="#setting-the-path-explicitly" class="anchor"></a>Setting the path explicitly</h2>
 <p>The path may be set explicitly using the <code>config_path</code> argument.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>(<span class="dt">config_path =</span> option_config)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /project/STEMI/</span></a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_portrpath.html">get_portrpath</a></span>(<span class="dt">config_path =</span> option_config)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /project/STEMI/</span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">portrpath</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; Root: /project/STEMI/</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; Profiles:</span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;     default: /project/STEMI/</span></a></code></pre></div>
 <p>Let’s return to the convenience of using the <code><a href="https://rdrr.io/r/base/options.html">options(pipetree.config)</a></code>, for now.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pipetree.config =</span> option_config)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_portrpath.html">get_portrpath</a></span>()</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Using getOption('pipetree.config')</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /project/STEMI/</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-2" data-line-number="2">portrpath &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_portrpath.html">get_portrpath</a></span>()</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; 2020-10-12 13:27:41 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:pipetree:Using getOption('pipetree.config')</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /project/STEMI/</span></a></code></pre></div>
 </div>
 <div id="using-the-config" class="section level2">
 <h2 class="hasAnchor">
@@ -240,51 +240,51 @@
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">portrpath<span class="op">$</span><span class="kw">add_profile</span>(<span class="st">"temp"</span>, temp_root)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">portrpath<span class="op">$</span>profile &lt;-<span class="st"> "temp"</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Setting profile to temp</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /tmp/Rtmpz8sOlL</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; Setting root to /tmp/Rtmpz8sOlL</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /tmp/RtmpBsr3T7</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; Setting root to /tmp/RtmpBsr3T7</span></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6">portrpath</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; Root: /tmp/Rtmpz8sOlL</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; Root: /tmp/RtmpBsr3T7</span></a>
 <a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; Profiles:</span></a>
 <a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt;     default: /project/STEMI/</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt;     temp: /tmp/Rtmpz8sOlL</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt;     temp: /tmp/RtmpBsr3T7</span></a></code></pre></div>
 </div>
 </div>
 <div id="access-to-the-filetree" class="section level1">
 <h1 class="hasAnchor">
 <a href="#access-to-the-filetree" class="anchor"></a>Access to the filetree</h1>
 <p>To access the filetree, we use get_paths(), similarly to how we loaded our config.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">paths &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_paths.html">get_paths</a></span>()</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Using getOption('pipetree.config')</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /tmp/Rtmpz8sOlL</span></a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">paths &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_paths.html">get_paths</a></span>()</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; 2020-10-12 13:27:41 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:pipetree:Using getOption('pipetree.config')</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:41 INFO:PortrPath:Root in: /tmp/RtmpBsr3T7</span></a>
 <a class="sourceLine" id="cb12-5" data-line-number="5">paths</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; $pipeline</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL/pipeline"</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7/pipeline"</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; $raw</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL/pipeline/raw"</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7/pipeline/raw"</span></a>
 <a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; $preprocessed</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL/pipeline/preprocessed"</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7/pipeline/preprocessed"</span></a>
 <a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; $unclean</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL/pipeline/preprocessed/unclean"</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7/pipeline/preprocessed/unclean"</span></a>
 <a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; $partition</span></a>
-<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL/pipeline/partition"</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7/pipeline/partition"</span></a>
 <a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; $root</span></a>
-<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; [1] "/tmp/Rtmpz8sOlL"</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; [1] "/tmp/RtmpBsr3T7"</span></a></code></pre></div>
 </div>
 <div id="accessing-the-cache" class="section level1">
 <h1 class="hasAnchor">
 <a href="#accessing-the-cache" class="anchor"></a>Accessing the cache</h1>
 <p>For this demonstration, there is no real cache in place, but we can pretend.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cache &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://mstr3336.github.io/pipetree//reference/get_cache.html">get_cache</a></span>()</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt; 2020-08-05 14:44:57 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Using getOption('pipetree.config')</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:PortrPath:Root in: /tmp/Rtmpz8sOlL</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; 2020-08-05 14:44:57 INFO:pipetree:Configuring drake to use an SQL based cache @ /tmp/Rtmpz8sOlL/pipeline/drake_cache.sqlite</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cache &lt;-<span class="st"> </span>pipetree<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pipetree/man/get_cache.html">get_cache</a></span>()</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt; 2020-10-12 13:27:42 </span><span class="al">WARNING</span><span class="co">:pipetree:No config path supplied</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; 2020-10-12 13:27:42 INFO:pipetree:Using getOption('pipetree.config')</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; 2020-10-12 13:27:42 INFO:PortrPath:Root in: /tmp/RtmpBsr3T7</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; 2020-10-12 13:27:42 INFO:pipetree:Configuring drake to use an SQL based cache @ /tmp/RtmpBsr3T7/pipeline/drake_cache.sqlite</span></a></code></pre></div>
 <p>To use this cache to extract a target, for example, we have a target in our drake::drake_plan() called <code>mtcars</code>, we do the following:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">mtc &lt;-<span class="st"> </span>drake<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/drake/reference/readd.html">readd</a></span>(mtcars, <span class="dt">cache =</span> cache)</a></code></pre></div>
 </div>
