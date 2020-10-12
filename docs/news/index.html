@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pipetree</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -108,24 +108,39 @@
       
     </div>
 
-    <div id="pipetree-0-4-1-9001" class="section level1">
+    <div id="pipetree-0-5-0" class="section level1">
 <h1 class="page-header">
-<a href="#pipetree-0-4-1-9001" class="anchor"></a>pipetree 0.4.1.9001</h1>
+<a href="#pipetree-0-5-0" class="anchor"></a>pipetree 0.5.0</h1>
 <div id="additions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additions" class="anchor"></a>Additions</h2>
 <ul>
 <li>Added <code><a href="../reference/cfetch.html">cfetch()</a></code>, which uses a <strong>super</strong> simple local cache (<code>xfun::rds_cache()</code>) to wrap calls to <code><a href="../reference/load_merged_partitions.html">load_merged_partitions()</a></code>
 </li>
+<li>Added <code><a href="../reference/export_target_set.html">export_target_set()</a></code> &amp; <code><a href="../reference/export_deidentified_notes.html">export_deidentified_notes()</a></code>, which conveniently export a set of targets from cache to a directory. Presently, the qs package is used for this.</li>
+</ul>
+</div>
+<div id="modifications" class="section level2">
+<h2 class="hasAnchor">
+<a href="#modifications" class="anchor"></a>Modifications</h2>
+<ul>
+<li>Modified <code>load_merged_partitions</code> to internally use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">data.table::rbindlist()</a></code>, instead of <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows</a></code>. This should decrease memory usage, and increase speed. ( <a href='https://github.com/datarichard'>@datarichard</a> <a href="https://github.com/mstr3336/pipetree/issues/25">#25</a> )</li>
+</ul>
+</div>
+<div id="potential-ouchies" class="section level2">
+<h2 class="hasAnchor">
+<a href="#potential-ouchies" class="anchor"></a>Potential Ouchies</h2>
+<ul>
+<li>Added dependency on <code>qs</code> package. Care has been taken to ensure that this is available on HPC, but at some point, if maintaining this dependency on the HPC is too burdensome, it may be worthwhile to forgo the performance improvements afforded by <code>qs</code> and just use saveRDS.</li>
 </ul>
 </div>
 </div>
     <div id="pipetree-0-4-1" class="section level1">
 <h1 class="page-header">
 <a href="#pipetree-0-4-1" class="anchor"></a>pipetree 0.4.1</h1>
-<div id="modifications" class="section level2">
+<div id="modifications-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#modifications" class="anchor"></a>Modifications</h2>
+<a href="#modifications-1" class="anchor"></a>Modifications</h2>
 <ul>
 <li>Allow config path to be given using sys env variable.</li>
 <li>Change <code><a href="../reference/load_merged_partitions.html">load_merged_partitions()</a></code> to fetch the list of cached targets via <code>cache$list()</code> rather than <code><a href="https://docs.ropensci.org/drake/reference/cached.html">drake::cached(cache = cache)</a></code>, as it seems much faster.</li>
@@ -142,9 +157,9 @@
     <div id="pipetree-0-4-0" class="section level1">
 <h1 class="page-header">
 <a href="#pipetree-0-4-0" class="anchor"></a>pipetree 0.4.0</h1>
-<div id="modifications-1" class="section level2">
+<div id="modifications-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#modifications-1" class="anchor"></a>Modifications</h2>
+<a href="#modifications-2" class="anchor"></a>Modifications</h2>
 <ul>
 <li>Now <code>get_project_metadata</code> includes information about the VCS versioning and package version of the calling env, as well as the time at which the metadata was fetched.</li>
 </ul>
@@ -196,7 +211,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#pipetree-0-4-1-9001">0.4.1.9001</a></li>
+        <li><a href="#pipetree-0-5-0">0.5.0</a></li>
         <li><a href="#pipetree-0-4-1">0.4.1</a></li>
         <li><a href="#pipetree-0-4-0">0.4.0</a></li>
         <li><a href="#pipetree-0-3-0">0.3.0</a></li>
