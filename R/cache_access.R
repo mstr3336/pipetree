@@ -154,7 +154,7 @@ cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
   target_set_name <- rlang::expr(!!target_set_name)
 
   cache_name <- "cfetch_cache"
-  dir <- file.path(here::here(), paste0(".", cache_name))
+  dir <- file.path(here::here(), paste0(".", cache_name, "/"))
 
   metadata_name = "ABOUT_THIS_CACHE"
 
@@ -190,7 +190,7 @@ cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
     # Early exist if you're not to touch build ignore
     if (!modify_rbuildignore) return(out)
 
-    rb_ignore <- file.path(here::here, ".Rbuildignore")
+    rb_ignore <- file.path(here::here(), ".Rbuildignore")
     if (!file.exists(rb_ignore)) {
       file.create(rb_ignore)
     }
