@@ -1,3 +1,10 @@
+# pipetree 0.6.0
+
+## Additions
+
+- Add progress bar to all cache accessors (wow!). 
+  This can be toggled w/ an option that I haven't bothered to document.
+
 # pipetree 0.5.0
 
 ## Additions
