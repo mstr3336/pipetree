@@ -131,8 +131,9 @@ check_cache_hashes <- function(target_set_name, cache) {
 #' a locally cached copy doesn't already exist.
 #'
 #' @details
-#' This uses a very simple cache implementation, from `xfun::rds_cache()`, and
-#' by default will just dump a `cache` directory in the current wd.
+#' This uses a very simple cache implementation, from `xfun::rds_cache()`.
+#'
+#' It adds a directory, `.cfetch_cache`, to the top level of the project.
 #'
 #' `xfun::rds_cache()` describes how to configure this.
 #'
@@ -145,9 +146,17 @@ check_cache_hashes <- function(target_set_name, cache) {
 #'        target, or cluster of targets.
 #' @param remote_cache the [drake::drake_cache] object from which the target
 #'        will be retrieved, and the metadata queried.
+#' @param modify_rbuildignore boolean - If `TRUE`, the project's `.Rbuildignore`
+#'        will be searched for a pattern to ignore the cache, and if not found,
+#'        adds it.
 #' @export
-cfetch <- function(target_set_name, remote_cache) {
+cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
   target_set_name <- rlang::expr(!!target_set_name)
+
+  cache_name <- "cfetch_cache"
+  dir <- file.path(here::here(), paste0(".", cache_name, "/"))
+
+  metadata_name = "ABOUT_THIS_CACHE"
 
   out <- xfun::cache_rds({
     res <- pipetree::load_merged_partitions(
@@ -156,8 +165,53 @@ cfetch <- function(target_set_name, remote_cache) {
     res
   },
   hash = check_cache_hashes(target_set_name, remote_cache),
-  file = target_set_name
+  file = target_set_name,
+  dir = dir
   )
+
+  if (dir.exists(dir)) {
+    writeLines(c(
+      "# Ignore everything in this cache",
+      "*"
+      ),
+      con = file.path(dir, ".gitignore"))
+
+    writeLines(c(
+      "This cache is used by pipetree::cfetch",
+      "It is typically used in interactive explorations",
+      "to minimize repeated reads of remote drake caches.",
+      "Ideally, you should see this directory ignored in",
+      ".Rbuildignore"
+    ),
+    con = file.path(dir, metadata_name))
+
+    cache_ignore_pat <- paste0("^.*", "\\.", cache_name, "/.*")
+
+    # Early exist if you're not to touch build ignore
+    if (!modify_rbuildignore) return(out)
+
+    rb_ignore <- file.path(here::here(), ".Rbuildignore")
+    if (!file.exists(rb_ignore)) {
+      file.create(rb_ignore)
+    }
+
+    which_line <- grep(
+      cache_ignore_pat,
+      readLines(rb_ignore),
+      fixed = TRUE)
+
+    if (rlang::is_empty(which_line)) {
+      cat(
+        c("\n", cache_ignore_pat, "\n"),
+        sep = "",
+        file = rb_ignore,
+        append = TRUE
+        )
+    }
+
+  }
+
+
 
   out
 }
