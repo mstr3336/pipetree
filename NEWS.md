@@ -1,3 +1,14 @@
+# pipetree 0.7.0
+
+## Boring backend
+
+- Extracted helper functions into own scopes, generalized helper functions
+
+## Additions
+
+- Added new helper function `map_fetch()`, that applies a user-supplied function to each element to be fetched
+  prior to combining the element.
+
 # pipetree 0.6.0
 
 ## Additions
