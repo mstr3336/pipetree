@@ -263,8 +263,25 @@ cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
 
 # Fetch with mapping function ======
 
+
+#' Map over each target in the set before combining with the rest
+#'
+#'
+#' @param .target_set_name the prefix for each target eg. `"journey_analysis_base"`
+#'        matches `"journey_analysis_base_1"`, `"journey_analysis_base_2"`, `_3`, `_4` and so on.
+#' @param .f a function to apply to each sharded input after it is fetched, before it combined with
+#'        the rest of the inputs
+#' @param .cache the `storr` cache from which the targets are fetched.
+#' @export
 map_fetch <- function(.target_set_name, .f, ..., .cache = NULL) {
   dots <- rlang::enquos(...)
+
+  cached_list <- get_cache_list(.cache)
+
+  out <- .target_set_name %>%
+    purrr::set_names() %>%
+    purrr::map(fetch_and_combine, .f, !!!dots, .cached_list = cached_list, .cache = cache) %>%
+    .[[1]]
 
 }
 
