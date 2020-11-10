@@ -7,6 +7,14 @@ can_show_progress_bar <- function(override = NULL) {
   return(out)
 }
 
+make_partition_pattern = function(target_set_name) {
+  pats <- list(
+    suffix = "(_\\d+)?$",
+    prefix = "^"
+  )
+  paste0(pats$prefix, target_set_name, pats$suffix)
+}
+
 #' Load and merge all partitions that match a prefix
 #'
 #' @description
@@ -58,11 +66,6 @@ load_merged_partitions <- function(
 
   args %<>% purrr::map_chr(rlang::as_name)
 
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
-
   where <- "{connection printout not implemented}"
   switch (cache$driver$con_type,
           SQLiteConnection = {
@@ -77,56 +80,6 @@ load_merged_partitions <- function(
 
   L$debug("Fetched list of targets from %s", where)
 
-
-  load_and_combine <- function(already_combined, df_name, pb = NULL, target_set_name = NULL) {
-    `%||%` <- rlang::`%||%`
-    L$debug("Appending '%s' to merged df, nrow before: %s",
-            df_name,
-            nrow(already_combined) %||% 0
-            )
-
-
-
-    out <- drake::readd(df_name, character_only = TRUE, cache = cache)
-
-    if ("progress_bar" %in% class(pb)) {
-      pb$tick(tokens = list(what = target_set_name))
-    }
-
-    out <- data.table::rbindlist(list(already_combined, out))
-    return(out)
-  }
-
-
-  fetch_and_combine <- function(target_set_name) {
-    L$info("Combining %s", target_set_name)
-
-
-    pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
-
-    table_partitions <- cached_list %>% stringr::str_subset(pattern)
-
-    pb <- NULL
-    if (can_show_progress_bar()) {
-      pb <- progress::progress_bar$new(
-        format = "  fetching :what [:bar] :percent eta :eta",
-        total = length(table_partitions),
-      )
-
-      pb$tick(0, tokens = list(what = target_set_name))
-    }
-
-
-
-    combined <- table_partitions %>%
-      purrr::reduce(load_and_combine, pb = pb, target_set_name = target_set_name, .init = NULL)
-
-    return(combined)
-  }
-
-
-
-
   out <- args %>%
     purrr::set_names() %>%
     purrr::map(fetch_and_combine)
@@ -136,12 +89,8 @@ load_merged_partitions <- function(
 
 
 check_cache_hashes <- function(target_set_name, cache) {
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
 
-  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+  pattern <- make_partition_pattern(target_set_name)
 
   object_list <- cache$list()
 
@@ -160,6 +109,52 @@ check_cache_hashes <- function(target_set_name, cache) {
   object_list
 }
 
+# Helpers For Iterating over data #######
+load_and_combine <- function(already_combined, df_name, pb = NULL, target_set_name = NULL) {
+  `%||%` <- rlang::`%||%`
+  L$debug("Appending '%s' to merged df, nrow before: %s",
+          df_name,
+          nrow(already_combined) %||% 0
+  )
+
+  out <- drake::readd(df_name, character_only = TRUE, cache = cache)
+
+  if ("progress_bar" %in% class(pb)) {
+    pb$tick(tokens = list(what = target_set_name))
+  }
+
+  out <- data.table::rbindlist(list(already_combined, out))
+  return(out)
+}
+
+
+fetch_and_combine <- function(target_set_name) {
+  L$info("Combining %s", target_set_name)
+
+
+  pattern <- make_partition_pattern(target_set_name)
+
+  table_partitions <- cached_list %>% stringr::str_subset(pattern)
+
+  pb <- NULL
+  if (can_show_progress_bar()) {
+    pb <- progress::progress_bar$new(
+      format = "  fetching :what [:bar] :percent eta :eta",
+      total = length(table_partitions),
+    )
+
+    pb$tick(0, tokens = list(what = target_set_name))
+  }
+
+
+
+  combined <- table_partitions %>%
+    purrr::reduce(load_and_combine, pb = pb, target_set_name = target_set_name, .init = NULL)
+
+  return(combined)
+}
+
+# Cache & export =======
 
 #' Fetch a target locally if cached, otherwise fetch from remote and cache.
 #'
@@ -294,12 +289,8 @@ export_deidentified_notes <- function(dir_out, cache) {
 #' @inheritParams load_merged_partitions
 #' @inheritParams cfetch
 export_target_set <- function(target_set_name, dir_out, cache)  {
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
 
-  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+  pattern <- make_partition_pattern(target_set_name)
 
   targets <- cache$list()
 
