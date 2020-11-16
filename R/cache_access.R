@@ -7,6 +7,14 @@ can_show_progress_bar <- function(override = NULL) {
   return(out)
 }
 
+make_partition_pattern = function(target_set_name) {
+  pats <- list(
+    suffix = "(_\\d+)?$",
+    prefix = "^"
+  )
+  paste0(pats$prefix, target_set_name, pats$suffix)
+}
+
 #' Load and merge all partitions that match a prefix
 #'
 #' @description
@@ -58,11 +66,17 @@ load_merged_partitions <- function(
 
   args %<>% purrr::map_chr(rlang::as_name)
 
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
+  cached_list <- get_cache_list(cache)
 
+
+  out <- args %>%
+    purrr::set_names() %>%
+    purrr::map(fetch_and_combine, identity, .cached_list = cached_list, .cache = cache)
+
+  out
+}
+
+get_cache_list <- function(cache) {
   where <- "{connection printout not implemented}"
   switch (cache$driver$con_type,
           SQLiteConnection = {
@@ -76,72 +90,13 @@ load_merged_partitions <- function(
   cached_list <- cache$list()
 
   L$debug("Fetched list of targets from %s", where)
-
-
-  load_and_combine <- function(already_combined, df_name, pb = NULL, target_set_name = NULL) {
-    `%||%` <- rlang::`%||%`
-    L$debug("Appending '%s' to merged df, nrow before: %s",
-            df_name,
-            nrow(already_combined) %||% 0
-            )
-
-
-
-    out <- drake::readd(df_name, character_only = TRUE, cache = cache)
-
-    if ("progress_bar" %in% class(pb)) {
-      pb$tick(tokens = list(what = target_set_name))
-    }
-
-    out <- data.table::rbindlist(list(already_combined, out))
-    return(out)
-  }
-
-
-  fetch_and_combine <- function(target_set_name) {
-    L$info("Combining %s", target_set_name)
-
-
-    pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
-
-    table_partitions <- cached_list %>% stringr::str_subset(pattern)
-
-    pb <- NULL
-    if (can_show_progress_bar()) {
-      pb <- progress::progress_bar$new(
-        format = "  fetching :what [:bar] :percent eta :eta",
-        total = length(table_partitions),
-      )
-
-      pb$tick(0, tokens = list(what = target_set_name))
-    }
-
-
-
-    combined <- table_partitions %>%
-      purrr::reduce(load_and_combine, pb = pb, target_set_name = target_set_name, .init = NULL)
-
-    return(combined)
-  }
-
-
-
-
-  out <- args %>%
-    purrr::set_names() %>%
-    purrr::map(fetch_and_combine)
-
-  out
+  cached_list
 }
 
 
 check_cache_hashes <- function(target_set_name, cache) {
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
 
-  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+  pattern <- make_partition_pattern(target_set_name)
 
   object_list <- cache$list()
 
@@ -160,6 +115,59 @@ check_cache_hashes <- function(target_set_name, cache) {
   object_list
 }
 
+# Helpers For Iterating over data #######
+load_and_combine <- function(already_combined, df_name, .f, ..., .pb = NULL, .target_set_name = NULL, .cache = NULL) {
+  `%||%` <- rlang::`%||%`
+
+  if (rlang::is_empty(.cache)) stop("give me a cache")
+
+  dots <- rlang::enquos(...)
+
+  L$debug("Appending '%s' to merged df, nrow before: %s",
+          df_name,
+          nrow(already_combined) %||% 0
+  )
+
+  out <- drake::readd(df_name, character_only = TRUE, cache = .cache)
+
+  f_call <- rlang::call2(.f, out,!!!dots)
+  out <- rlang::eval_tidy(f_call)
+
+  if ("progress_bar" %in% class(.pb)) {
+    .pb$tick(tokens = list(what = .target_set_name))
+  }
+
+  out <- data.table::rbindlist(list(already_combined, out))
+  return(out)
+}
+
+
+fetch_and_combine <- function(target_set_name, .f, ..., .cached_list = c(), .cache = NULL) {
+  L$info("Combining %s", target_set_name)
+
+  dots <- rlang::enquos(...)
+
+  pattern <- make_partition_pattern(target_set_name)
+
+  table_partitions <- .cached_list %>% stringr::str_subset(pattern)
+
+  pb <- NULL
+  if (can_show_progress_bar()) {
+    pb <- progress::progress_bar$new(
+      format = "  fetching :what [:bar] :percent eta :eta",
+      total = length(table_partitions),
+    )
+
+    pb$tick(0, tokens = list(what = target_set_name))
+  }
+
+  combined <- table_partitions %>%
+    purrr::reduce(load_and_combine, .f, !!!dots, .pb = pb, .target_set_name = target_set_name, .cache = .cache,.init = NULL)
+
+  return(combined)
+}
+
+# Fetch from local cache =======
 
 #' Fetch a target locally if cached, otherwise fetch from remote and cache.
 #'
@@ -253,6 +261,31 @@ cfetch <- function(target_set_name, remote_cache, modify_rbuildignore = T) {
   out
 }
 
+# Fetch with mapping function ======
+
+
+#' Map over each target in the set before combining with the rest
+#'
+#'
+#' @param .target_set_name the prefix for each target eg. `"journey_analysis_base"`
+#'        matches `"journey_analysis_base_1"`, `"journey_analysis_base_2"`, `_3`, `_4` and so on.
+#' @param .f a function to apply to each sharded input after it is fetched, before it combined with
+#'        the rest of the inputs
+#' @param .cache the `storr` cache from which the targets are fetched.
+#' @export
+map_fetch <- function(.target_set_name, .f, ..., .cache = NULL) {
+  dots <- rlang::enquos(...)
+
+  cached_list <- get_cache_list(.cache)
+
+  out <- .target_set_name %>%
+    purrr::set_names() %>%
+    purrr::map(fetch_and_combine, .f, !!!dots, .cached_list = cached_list, .cache = cache) %>%
+    .[[1]]
+
+}
+
+# Export from cache =====
 
 export_single_target <- function(target_name, dir_out, cache) {
   target <- drake::readd(target_name, character_only = TRUE, cache = cache)
@@ -294,12 +327,8 @@ export_deidentified_notes <- function(dir_out, cache) {
 #' @inheritParams load_merged_partitions
 #' @inheritParams cfetch
 export_target_set <- function(target_set_name, dir_out, cache)  {
-  pats <- list(
-    suffix = "(_\\d+)?$",
-    prefix = "^"
-  )
 
-  pattern <- paste0(pats$prefix, target_set_name, pats$suffix)
+  pattern <- make_partition_pattern(target_set_name)
 
   targets <- cache$list()
 

@@ -4,7 +4,7 @@
 \alias{cfetch}
 \title{Fetch a target locally if cached, otherwise fetch from remote and cache.}
 \usage{
-cfetch(target_set_name, remote_cache)
+cfetch(target_set_name, remote_cache, modify_rbuildignore = T)
 }
 \arguments{
 \item{target_set_name}{a \strong{single} quoted \code{"string"}, providing the name of the
@@ -12,6 +12,10 @@ target, or cluster of targets.}
 
 \item{remote_cache}{the \link[drake:drake_cache]{drake::drake_cache} object from which the target
 will be retrieved, and the metadata queried.}
+
+\item{modify_rbuildignore}{boolean - If \code{TRUE}, the project's \code{.Rbuildignore}
+will be searched for a pattern to ignore the cache, and if not found,
+adds it.}
 }
 \description{
 Given the name of the target/target set, and the \code{remote_cache}, this will
@@ -19,8 +23,9 @@ query the target's hash*(es)* from the remote, and then fetch it only if
 a locally cached copy doesn't already exist.
 }
 \details{
-This uses a very simple cache implementation, from \code{xfun::rds_cache()}, and
-by default will just dump a \code{cache} directory in the current wd.
+This uses a very simple cache implementation, from \code{xfun::rds_cache()}.
+
+It adds a directory, \code{.cfetch_cache}, to the top level of the project.
 
 \code{xfun::rds_cache()} describes how to configure this.
 
